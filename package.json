@@ -1,0 +1,29 @@
+{
+  "name": "boateng-web",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwcay/boateng-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kwcay/boateng-web/issues"
+  },
+  "homepage": "https://github.com/kwcay/boateng-web#readme",
+  "dependencies": {
+    "next": "^9.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.0",
+    "@types/react": "^16.9.19",
+    "typescript": "^3.7.5"
+  }
+}
