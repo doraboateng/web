@@ -1,9 +1,9 @@
-# Dora Boateng: A reference of cultures past and present.
+Dora Boateng: A reference of cultures past and present.
 
 >TODO: quick mission and intro
 
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Contents</summary>
 
 - [Reporting Bugs](#reporting-bugs)
 - [Reporting Security Issues](#reporting-security-issues)
