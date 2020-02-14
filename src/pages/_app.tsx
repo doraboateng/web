@@ -1,0 +1,46 @@
+import App from 'next/app';
+import Head from 'next/head';
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  colors: {
+    primary: '#0070f3',
+  },
+}
+
+export default class BoatengApp extends App {
+  render() {
+    const { Component, pageProps } = this.props;
+    const title = 'Dora Boateng';
+    const description = 'A reference of cultures past and present.';
+
+    return (
+      <ThemeProvider theme={theme}>
+        <Head>
+          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+          <title>{`${title}: ${description}`}</title>
+
+          {/* <base href="https://www.doraboateng.com/" /> */}
+          <meta name="description" content={description} />
+          <meta name="topic" content="Culture, Languages" />
+          <meta name="keywords" content="dictionary, encyclopedia, bilingual, multilingual, translation" />
+          <meta name="robots" content="index, follow" />
+          <meta name="coverage" content="Worldwide" />
+          <meta property="og:title" content={`${title}: ${description}`} />
+          <meta property="og:desc" content={description} />
+          <meta property="og:type" content="website" />
+          <link type="text/plain" rel="author" href="https://www.doraboateng.com/humans.txt" />
+          <link
+              rel="search"
+              type="application/opensearchdescription+xml"
+              href="https://www.doraboateng.com/osd.xml" title={title} />
+
+
+          <link rel="canonical" href="https://www.doraboateng.com/en" />
+        </Head>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    );
+  }
+}

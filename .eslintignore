@@ -1,0 +1,7 @@
+build
+coverage
+cypress
+docs
+examples
+node_modules
+public

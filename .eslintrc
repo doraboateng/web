@@ -1,0 +1,54 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:eslint-comments/recommended",
+    "plugin:promise/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "eslint-comments",
+    "import",
+    "jsx-a11y",
+    "promise",
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "func-names": ["error", "never"],
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": [
+        "tests/*.js",
+        "**/__mocks__/*.js",
+        "**/*.stories.js",
+        "**/*.test.js"
+      ]
+    }],
+    "max-len": ["warn", { "code": 100 }],
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "no-unused-expressions": ["error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
+    "object-curly-newline": ["error", {
+      "consistent": true
+    }],
+    "react/destructuring-assignment": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-one-expression-per-line": "off"
+  }
+}
