@@ -1,4 +1,4 @@
-import App from 'next/app';
+import App, { AppContext } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -6,6 +6,16 @@ import theme from '../theme';
 import GlobalStyle from '../shared/components/GlobalStyle';
 
 export default class BoatengApp extends App {
+  // Temporarily redirect all traffic to landing page.
+  static async getInitialProps({ ctx, router }: AppContext) {
+    if (ctx.req.url !== '/') {
+      ctx.res.writeHead(302, { 'Location': '/' });
+      ctx.res.end();
+    }
+
+    return {pageProps: {}};
+  }
+
   render() {
     const { Component, pageProps } = this.props;
     const title = 'Dora Boateng';
