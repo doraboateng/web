@@ -2,12 +2,8 @@ import App from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-}
+import theme from '../theme';
+import GlobalStyle from '../shared/components/GlobalStyle';
 
 export default class BoatengApp extends App {
   render() {
@@ -30,15 +26,19 @@ export default class BoatengApp extends App {
           <meta property="og:title" content={`${title}: ${description}`} />
           <meta property="og:desc" content={description} />
           <meta property="og:type" content="website" />
-          <link type="text/plain" rel="author" href="https://www.doraboateng.com/humans.txt" />
+          <link type="text/plain" rel="author" href="/humans.txt" />
           <link
-              rel="search"
-              type="application/opensearchdescription+xml"
-              href="https://www.doraboateng.com/osd.xml" title={title} />
+            href="https://fonts.googleapis.com/css?family=Crimson+Text:400,600"
+            rel="stylesheet" />
+          <link
+            rel="search"
+            type="application/opensearchdescription+xml"
+            href="https://www.doraboateng.com/osd.xml" title={title} />
 
 
-          <link rel="canonical" href="https://www.doraboateng.com/en" />
+          {/* <link rel="canonical" href="https://www.doraboateng.com/en" /> */}
         </Head>
+        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     );
