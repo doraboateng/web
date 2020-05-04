@@ -3,22 +3,41 @@ Dora Boateng: A reference of cultures past and present.
 >TODO: quick mission and intro
 
 <details>
-  <summary>Contents</summary>
+    <summary>Contents</summary>
 
+- [Local setup](#local-setup)
+    - [Requirements](#requirements)
+    - [Running the app locally](#running-the-app-locally)
 - [Reporting Bugs](#reporting-bugs)
 - [Reporting Security Issues](#reporting-security-issues)
-- [Contributing (↗)](https://github.com/kwcay/boateng-web/blob/stable/docs/contributing.md)
+- [Contributing](https://github.com/kwcay/boateng-web/blob/stable/docs/contributing.md)
 - [License](#license)
 </details>
 
-# Reporting Bugs
+# Local setup
+
+## Requirements
+
+- [Node.js](https://nodejs.org/en)
+- [Yarn](https://yarnpkg.com/getting-started/install)
+
+## Running the app locally
+
+```shell
+yarn dev
+```
+
+The app will be available at the URL: http://localhost:3000
+
+# Reporting bugs
 
 >TODO
 
-# Reporting Security Issues
+# Reporting security issues
 
 >TODO
 
 # License
 
-Copyright © 2020 Kwahu & Cayes
+[GNU General Public License v3](https://github.com/kwcay/boateng-web/blob/stable/LICENSE)
+Copyright © Kwahu & Cayes
