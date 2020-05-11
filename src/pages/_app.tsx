@@ -2,21 +2,28 @@ import App, { AppContext } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+
 import theme from '../theme';
 import GlobalStyle from '../shared/components/GlobalStyle';
+import { getLocale, getLocalizedUrl } from '../utils/locale';
 
 export default class BoatengApp extends App {
-  // Temporarily redirect all traffic to landing page.
-  static async getInitialProps({ ctx, router }: AppContext) {
-    if (ctx.req.url !== '/') {
-      ctx.res.writeHead(302, { 'Location': '/' });
+  static getInitialProps = async ({ ctx, router }: AppContext) => {
+    const localizedUrl = getLocalizedUrl(ctx.req);
+
+    if (ctx.req.url !== localizedUrl) {
+      ctx.res.writeHead(302, { 'Location': `${localizedUrl}` });
       ctx.res.end();
     }
 
-    return {pageProps: {}};
+    return {
+      pageProps: {
+        locale: getLocale(ctx.req),
+      },
+    };
   }
 
-  render() {
+  render = () => {
     const { Component, pageProps } = this.props;
     const title = 'Dora Boateng';
     const description = 'A reference of cultures past and present.';

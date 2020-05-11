@@ -1,4 +1,4 @@
-import Landing from './Landing';
+import Landing from '../../shared/components/Landing';
 
 const App = () => (
   <Landing />
