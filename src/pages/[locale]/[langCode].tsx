@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 import { LanguagePageProps } from '../../language/types';
 
 const LanguagePage = ({ code, name }: LanguagePageProps) => (
-  <div>{`"${name}" language page (${code})`}</div>
+  <div>{`Language page for "${name}" (${code})`}</div>
 );
 
 export default LanguagePage;
@@ -32,14 +32,17 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   });
 
   const { data: { language } } = await response.json();
+  const name = language && language.names.length
+    ? language.names[0].value
+    : params.langCode;
 
   console.log(`GraphQL request to ${response.url}`, language);
 
   return {
     props: {
       code: params.langCode,
-      name: 'Twi',
-      localizedName: 'Twi',
+      name,
+      localizedName: name,
     }
   }
 }
