@@ -1,5 +1,6 @@
 import React from 'react';
-import Error from 'next/error';
+import NextError from 'next/error';
+import { NextPageContext } from 'next';
 import * as Sentry from '@sentry/node';
 
 interface Props {
@@ -16,15 +17,18 @@ const DoraBoatengError = ({ statusCode, hasGetInitialPropsRun, err }: Props) => 
     Sentry.captureException(err);
   }
 
-  return <Error statusCode={statusCode} />;
+  return <NextError statusCode={statusCode} />;
 };
 
 DoraBoatengError.getInitialProps = async ({ res, err, asPath }) => {
-  const errorInitialProps = await Error.getInitialProps({ res, err });
+  const errorProps = await NextError.getInitialProps(({ res, err } as NextPageContext));
 
   // Workaround for https://github.com/zeit/next.js/issues/8592, mark when
   // getInitialProps has run
-  errorInitialProps.hasGetInitialPropsRun = true;
+  const patchedErrorProps = {
+    ...errorProps,
+    hasGetInitialPropsRun: true,
+  };
 
   if (res) {
     // Running on the server, the response object is available.
@@ -40,7 +44,7 @@ DoraBoatengError.getInitialProps = async ({ res, err, asPath }) => {
     if (err) {
       Sentry.captureException(err);
 
-      return errorInitialProps;
+      return patchedErrorProps;
     }
   } else if (err) {
     // Running on the client (browser).
@@ -54,7 +58,7 @@ DoraBoatengError.getInitialProps = async ({ res, err, asPath }) => {
     //    Boundaries: https://reactjs.org/docs/error-boundaries.html
     Sentry.captureException(err);
 
-    return errorInitialProps;
+    return patchedErrorProps;
   }
 
   // If this point is reached, getInitialProps was called without any
@@ -64,7 +68,7 @@ DoraBoatengError.getInitialProps = async ({ res, err, asPath }) => {
     new Error(`_error.js getInitialProps missing data at path: ${asPath}`),
   );
 
-  return errorInitialProps;
+  return patchedErrorProps;
 };
 
 export default DoraBoatengError;
