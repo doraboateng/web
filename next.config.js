@@ -3,19 +3,44 @@ const {
   PHASE_PRODUCTION_SERVER,
 } = require('next/constants');
 
-module.exports = (phase, { defaultConfig }) => {
-  isDev = phase === PHASE_DEVELOPMENT_SERVER;
-  isProd = phase === PHASE_PRODUCTION_SERVER;
+const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 
-  return {
+const withSourceMaps = require('@zeit/next-source-maps')();
+
+module.exports = (phase, { defaultConfig }) => {
+  DEVELOPMENT = phase === PHASE_DEVELOPMENT_SERVER;
+  PRODUCTION = phase === PHASE_PRODUCTION_SERVER;
+
+  return withSourceMaps({
     ...defaultConfig,
     env: {
-      isDev,
-      isProd,
+      DEVELOPMENT,
+      PRODUCTION,
 
-      apiUrl: process.env.API_URL || 'http://localhost:8800',
-      version: process.env.BUILD_VERSION || 'dev',
+      API_URL: process.env.API_URL || 'http://localhost:8800',
+      SENTRY_DSN: process.env.SENTRY_DSN,
+      VERSION: process.env.BUILD_VERSION || 'dev',
     },
     reactStrictMode: true,
-  };
+    webpack: (config, options) => {
+      // Replace "@sentry/node" imports with "@sentry/browser" when building
+      // the browser bundle.
+      if (!options.isServer) {
+        config.resolve.alias['@sentry/node'] = '@sentry/browser'
+      }
+
+      // Configure Sentry webpack plugin for sourcemaps.
+      if (process.env.SENTRY_DSN && PRODUCTION) {
+        config.plugins.push(
+          new SentryWebpackPlugin({
+            include: '.next',
+            ignore: ['node_modules'],
+            urlPrefix: '~/_next',
+          })
+        )
+      }
+
+      return config;
+    },
+  });
 };

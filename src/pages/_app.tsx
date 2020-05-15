@@ -1,13 +1,19 @@
 import App, { AppContext } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
+import * as Sentry from '@sentry/node';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '../theme';
 import GlobalStyle from '../shared/components/GlobalStyle';
 import { getLocale, getLocalizedUrl } from '../utils/locale';
 
-export default class BoatengApp extends App {
+Sentry.init({
+  enabled: Boolean(process.env.PRODUCTION),
+  dsn: process.env.SENTRY_DSN,
+});
+
+export default class BoatengApp extends App<{err: any}> {
   static getInitialProps = async ({ ctx, router }: AppContext) => {
     const localizedUrl = getLocalizedUrl(ctx.req);
 
@@ -24,7 +30,7 @@ export default class BoatengApp extends App {
   }
 
   render = () => {
-    const { Component, pageProps } = this.props;
+    const { Component, err, pageProps } = this.props;
     const title = 'Dora Boateng';
     const description = 'A reference of cultures past and present.';
 
@@ -56,7 +62,7 @@ export default class BoatengApp extends App {
           {/* <link rel="canonical" href="https://www.doraboateng.com/en" /> */}
         </Head>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <Component { ...pageProps } err={err} />
       </ThemeProvider>
     );
   }
