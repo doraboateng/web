@@ -1,3 +1,6 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/5b07645aa53a13f4aa9e/maintainability)](https://codeclimate.com/github/kwcay/boateng-web/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5b07645aa53a13f4aa9e/test_coverage)](https://codeclimate.com/github/kwcay/boateng-web/test_coverage)
+
 Dora Boateng: A reference of cultures past and present.
 
 >TODO: quick mission and intro
