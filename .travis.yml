@@ -1,0 +1,11 @@
+language: node_js
+
+node_js:
+  - "12"
+
+notifications:
+  email: false
+
+git:
+  depth: 1
+  quiet: true

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"TODO: run tests\"",
     "build": "next build",
     "start": "next start"
   },
