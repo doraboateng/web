@@ -38,3 +38,6 @@ cat ./.docker-hub-token | docker login --username ... --password-stdin
 docker push doraboateng/web:$(git describe --abbrev=0 --tags)
 docker push doraboateng/web:latest
 ```
+
+- [Github releases](https://github.com/kwcay/boateng-web/releases)
+- [Docker Hub releases](https://hub.docker.com/repository/docker/doraboateng/web/tags)
