@@ -6,6 +6,7 @@ node_modules/
 scripts/
 tmp/
 
+.codeclimate.yml
 .devcontainer.json
 .dockerignore
 .editorconfig

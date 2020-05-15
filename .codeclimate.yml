@@ -1,0 +1,7 @@
+plugins:
+  editorconfig:
+    enabled: true
+  eslint:
+    enabled: true
+  markdownlint:
+    enabled: true
