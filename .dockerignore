@@ -1,0 +1,17 @@
+.git/
+.github/
+.vscode/
+docs/
+node_modules/
+scripts/
+tmp/
+
+.devcontainer.json
+.dockerignore
+.editorconfig
+.env.*
+.gitignore
+.travis.yml
+docker-compose*
+Dockerfile
+LICENSE

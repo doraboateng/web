@@ -16,6 +16,7 @@ dist/
 /cypress/videos
 
 # Miscellaneous
+tmp/
 .DS_Store
 .env
 Thumb.db

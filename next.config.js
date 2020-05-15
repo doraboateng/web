@@ -1,4 +1,3 @@
-const Dotenv = require('dotenv-webpack');
 const {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_SERVER,
@@ -15,12 +14,8 @@ module.exports = (phase, { defaultConfig }) => {
       isProd,
 
       apiUrl: process.env.API_URL || 'http://localhost:8800',
+      version: process.env.BUILD_VERSION || 'dev',
     },
     reactStrictMode: true,
-    webpack: config => {
-      config.plugins.push(new Dotenv({ silent: true }));
-
-      return config;
-    },
   };
 };

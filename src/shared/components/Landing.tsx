@@ -16,6 +16,8 @@ const LandingPage = () => (
       <Notice>
         We're currently working on new features... stay tuned!
       </Notice>
+
+      <div style={{display: 'none'}}>{`version: ${process.env.version}`}</div>
     </Wrapper>
   </Background>
 );

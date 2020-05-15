@@ -1,0 +1,59 @@
+version: "3.4"
+services:
+  web:
+    image: doraboateng/web:dev
+    build:
+      context: "."
+      target: dev
+    command: yarn dev
+    depends_on:
+      - api
+    environment:
+      API_URL: http://api
+      BUILD_VERSION: dev
+      GIT_HASH: dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/boateng-web
+  api:
+    image: doraboateng/api:latest
+    depends_on:
+      - zero
+      - alpha
+    ports:
+      - "18800:8800"
+
+  # TODO: doraboateng/dgraph:v20.03.1-01
+  zero:
+    image: dgraph/dgraph:v20.03.1
+    command: >-
+      dgraph zero
+        --bindall
+        --block_rate 10
+        --expose_trace
+        --logtostderr
+        --my=zero:5080
+        --profile_mode block
+        -v=2
+    volumes:
+      - ./tmp/dgraph/zero:/data/zero
+    working_dir: /data/zero
+  alpha:
+    image: dgraph/dgraph:v20.03.1
+    command: >-
+      dgraph alpha
+        --block_rate 10
+        --expose_trace
+        --logtostderr
+        --lru_mb=1024
+        --my=alpha:7080
+        --profile_mode block
+        --trace 1.0
+        -v=2
+        --zero=zero:5080
+    depends_on:
+      - zero
+    volumes:
+      - ./tmp/dgraph/alpha:/data/alpha
+    working_dir: /data/alpha
