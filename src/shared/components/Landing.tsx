@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const LandingPage = () => (
@@ -10,14 +11,12 @@ const LandingPage = () => (
         and other <Emphasis>gems from  indigenous cultures</Emphasis>&nbsp;
         around the world. Help <Emphasis>preserve</Emphasis> and&nbsp;
         <Emphasis>promote</Emphasis> our identities, and re-connect with our
-        heritage. 
+        heritage.
       </Paragraph>
 
       <Notice>
-        We're currently working on new features... stay tuned!
+        We&apos;re currently working on new features... stay tuned!
       </Notice>
-
-      <div style={{display: 'none'}}>{`version: ${process.env.version}`}</div>
     </Wrapper>
   </Background>
 );

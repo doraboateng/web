@@ -1,18 +1,24 @@
 import App, { AppContext } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
+import * as Sentry from '@sentry/node';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '../theme';
 import GlobalStyle from '../shared/components/GlobalStyle';
 import { getLocale, getLocalizedUrl } from '../utils/locale';
 
-export default class BoatengApp extends App {
-  static getInitialProps = async ({ ctx, router }: AppContext) => {
+Sentry.init({
+  enabled: Boolean(process.env.PRODUCTION),
+  dsn: process.env.SENTRY_DSN,
+});
+
+export default class BoatengApp extends App<{err: any}> {
+  static getInitialProps = async ({ ctx }: AppContext) => {
     const localizedUrl = getLocalizedUrl(ctx.req);
 
     if (ctx.req.url !== localizedUrl) {
-      ctx.res.writeHead(302, { 'Location': `${localizedUrl}` });
+      ctx.res.writeHead(302, { Location: `${localizedUrl}` });
       ctx.res.end();
     }
 
@@ -21,12 +27,13 @@ export default class BoatengApp extends App {
         locale: getLocale(ctx.req),
       },
     };
-  }
+  };
 
   render = () => {
-    const { Component, pageProps } = this.props;
+    const { Component, err, pageProps } = this.props;
     const title = 'Dora Boateng';
     const description = 'A reference of cultures past and present.';
+    const keywords = 'dictionary, encyclopedia, bilingual, multilingual, translation';
 
     return (
       <ThemeProvider theme={theme}>
@@ -37,7 +44,7 @@ export default class BoatengApp extends App {
           {/* <base href="https://www.doraboateng.com/" /> */}
           <meta name="description" content={description} />
           <meta name="topic" content="Culture, Languages" />
-          <meta name="keywords" content="dictionary, encyclopedia, bilingual, multilingual, translation" />
+          <meta name="keywords" content={keywords} />
           <meta name="robots" content="index, follow" />
           <meta name="coverage" content="Worldwide" />
           <meta property="og:title" content={`${title}: ${description}`} />
@@ -46,18 +53,21 @@ export default class BoatengApp extends App {
           <link type="text/plain" rel="author" href="/humans.txt" />
           <link
             href="https://fonts.googleapis.com/css?family=Crimson+Text:400,600"
-            rel="stylesheet" />
+            rel="stylesheet"
+          />
           <link
             rel="search"
             type="application/opensearchdescription+xml"
-            href="https://www.doraboateng.com/osd.xml" title={title} />
+            href="https://www.doraboateng.com/osd.xml"
+            title={title}
+          />
 
 
           {/* <link rel="canonical" href="https://www.doraboateng.com/en" /> */}
         </Head>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <Component {...pageProps} err={err} />
       </ThemeProvider>
     );
-  }
+  };
 }
