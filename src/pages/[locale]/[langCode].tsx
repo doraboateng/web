@@ -1,3 +1,4 @@
+import React from 'react';
 import { GetServerSideProps } from 'next';
 import fetch from 'node-fetch';
 
@@ -26,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify({ query, variables }),
   });
@@ -36,13 +37,11 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     ? language.names[0].value
     : params.langCode;
 
-  console.log(`GraphQL request to ${response.url}`, language);
-
   return {
     props: {
       code: params.langCode,
       name,
       localizedName: name,
-    }
-  }
-}
+    },
+  };
+};

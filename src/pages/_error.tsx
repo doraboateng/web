@@ -2,7 +2,13 @@ import React from 'react';
 import Error from 'next/error';
 import * as Sentry from '@sentry/node';
 
-const DoraBoatengError = ({ statusCode, hasGetInitialPropsRun, err }) => {
+interface Props {
+  statusCode: number;
+  hasGetInitialPropsRun: boolean;
+  err: any;
+}
+
+const DoraBoatengError = ({ statusCode, hasGetInitialPropsRun, err }: Props) => {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
     // https://github.com/zeit/next.js/issues/8592. As a workaround, we pass
@@ -11,14 +17,14 @@ const DoraBoatengError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   }
 
   return <Error statusCode={statusCode} />;
-}
+};
 
 DoraBoatengError.getInitialProps = async ({ res, err, asPath }) => {
-  const errorInitialProps = await Error.getInitialProps({ res, err })
+  const errorInitialProps = await Error.getInitialProps({ res, err });
 
   // Workaround for https://github.com/zeit/next.js/issues/8592, mark when
   // getInitialProps has run
-  errorInitialProps.hasGetInitialPropsRun = true
+  errorInitialProps.hasGetInitialPropsRun = true;
 
   if (res) {
     // Running on the server, the response object is available.
@@ -36,7 +42,7 @@ DoraBoatengError.getInitialProps = async ({ res, err, asPath }) => {
 
       return errorInitialProps;
     }
-  } else {
+  } else if (err) {
     // Running on the client (browser).
     //
     // Next.js will provide an err if:
@@ -46,21 +52,19 @@ DoraBoatengError.getInitialProps = async ({ res, err, asPath }) => {
     //    componentDidMount, etc) that was caught by Next.js's React Error
     //    Boundary. Read more about what types of exceptions are caught by Error
     //    Boundaries: https://reactjs.org/docs/error-boundaries.html
-    if (err) {
-      Sentry.captureException(err);
+    Sentry.captureException(err);
 
-      return errorInitialProps;
-    }
+    return errorInitialProps;
   }
 
   // If this point is reached, getInitialProps was called without any
   // information about what the error might be. This is unexpected and may
   // indicate a bug introduced in Next.js, so record it in Sentry
   Sentry.captureException(
-    new Error(`_error.js getInitialProps missing data at path: ${asPath}`)
+    new Error(`_error.js getInitialProps missing data at path: ${asPath}`),
   );
 
   return errorInitialProps;
-}
+};
 
 export default DoraBoatengError;

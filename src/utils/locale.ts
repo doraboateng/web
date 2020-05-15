@@ -21,9 +21,8 @@ export const supportedLocales: Locale[] = [
   LOCALE_SPANISH,
 ];
 
-export const getLocale = (request: IncomingMessage): Locale => {
-  return LOCALE_ENGLISH;
-};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const getLocale = (request: IncomingMessage): Locale => LOCALE_ENGLISH;
 
 export const getLocalizedUrl = (request: IncomingMessage): string => {
   const paths = (request.url || '')
@@ -31,10 +30,10 @@ export const getLocalizedUrl = (request: IncomingMessage): string => {
     .map(path => decodeURIComponent(path).trim())
     .filter(path => path.length > 0)
     .map(path => encodeURIComponent(path));
-  
+
   if (!paths || !supportedLocales.includes((paths[0] as Locale))) {
     paths.unshift(getLocale(request));
   }
 
-  return `/${paths.join("/")}`;
+  return `/${paths.join('/')}`;
 };

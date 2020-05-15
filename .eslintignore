@@ -3,5 +3,7 @@ coverage
 cypress
 docs
 examples
+next-env.d.ts
+next.config.js
 node_modules
 public
