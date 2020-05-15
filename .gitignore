@@ -17,6 +17,7 @@ dist/
 
 # Miscellaneous
 tmp/
+.docker-hub-token
 .DS_Store
 .env
 Thumb.db

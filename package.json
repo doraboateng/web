@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "type-check": "yarn run tsc",
     "test": "echo \"TODO: run tests\"",
+    "qa": "yarn lint && yarn type-check && yarn test",
     "build": "next build",
     "start": "next start"
   },
