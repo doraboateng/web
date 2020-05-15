@@ -9,11 +9,13 @@ docker-compose restart
 docker-compose exec web yarn qa
 ```
 
-2. Create release on [Github](https://github.com/kwcay/boateng-web/releases/new?target=stable).
+2. Update the version number in `package.json`, commit the change and push it up to Github.
+
+3. Create release on [Github](https://github.com/kwcay/boateng-web/releases/new?target=stable).
 
 Follow [this link](https://github.com/kwcay/boateng-web/releases) to view the latest releases.
 
-3. Publish the release to Docker Hub:
+4. Publish the release to Docker Hub:
 
 ```shell
 # Retrieve latest tags from Github.
