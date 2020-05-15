@@ -4,13 +4,13 @@ const Privacy = () => (
 
 export default Privacy;
 
-export async function getStaticProps({ params }) {
-  // Get external data from the file system, API, DB, etc.
-  const data = {}
+// export async function getStaticProps({ params }) {
+//   // Get external data from the file system, API, DB, etc.
+//   const data = {}
 
-  // The value of the `props` key will be
-  //  passed to the `Home` component
-  return {
-    props: {}
-  };
-};
+//   // The value of the `props` key will be
+//   //  passed to the `Home` component
+//   return {
+//     props: {}
+//   };
+// };
