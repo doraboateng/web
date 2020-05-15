@@ -5,15 +5,16 @@ services:
     build:
       context: "."
       target: dev
-    command: yarn dev
+    command: yarn dev --port 3300
     depends_on:
       - api
     environment:
       API_URL: http://api
+      APP_PORT: 3300
       BUILD_VERSION: dev
       GIT_HASH: dev
     ports:
-      - "3000:3000"
+      - "3300:3300"
     volumes:
       - .:/boateng-web
   api:

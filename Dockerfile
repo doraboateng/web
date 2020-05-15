@@ -38,4 +38,5 @@ COPY --chown=node:node --from=build /boateng-web/package.json /boateng-web/
 
 USER node
 
-ENTRYPOINT ["yarn", "start"]
+ENV APP_PORT 3300
+ENTRYPOINT ["ash", "-c", "yarn start --port $APP_PORT"]
