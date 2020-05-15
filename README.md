@@ -64,6 +64,9 @@ docker-compose logs --follow web
 
 # Launch a shell into the web contatiner.
 docker-compose exec web ash
+
+# Update dependencies.
+docker-compose exec web yarn upgrade
 ```
 
 # Reporting bugs
