@@ -11,6 +11,10 @@ before_script:
   - chmod +x $HOME/bin/code-climate
   - code-climate before-build
 
+after_script:
+  # Notify Code Climate.
+  - code-climate after-build --exit-code $TRAVIS_TEST_RESULT
+
 notifications:
   email: false
 
