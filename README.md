@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/kwcay/boateng-web.svg?branch=stable)](https://travis-ci.com/kwcay/boateng-web)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5b07645aa53a13f4aa9e/maintainability)](https://codeclimate.com/github/kwcay/boateng-web/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5b07645aa53a13f4aa9e/test_coverage)](https://codeclimate.com/github/kwcay/boateng-web/test_coverage)
-[![License](https://img.shields.io/badge/license-GPL3-blue.svg)](https://github.com/kwcay/boateng-web/blob/stable/LICENSE)
+![GitHub release](https://img.shields.io/github/v/release/kwcay/boateng-web)
 
 Dora Boateng: A reference of cultures past and present.
 
