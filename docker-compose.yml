@@ -9,10 +9,8 @@ services:
     depends_on:
       - api
     environment:
-      API_URL: http://api
-      APP_PORT: 3300
+      NEXT_PUBLIC_API_URL: http://api
       BUILD_VERSION: dev
-      GIT_HASH: dev
     ports:
       - "3300:3300"
     volumes:

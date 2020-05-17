@@ -1,24 +1,15 @@
-const {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_SERVER,
-} = require('next/constants');
-
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
-
 const withSourceMaps = require('@zeit/next-source-maps')();
 
 module.exports = (phase, { defaultConfig }) => {
-  DEVELOPMENT = phase === PHASE_DEVELOPMENT_SERVER;
-  PRODUCTION = phase === PHASE_PRODUCTION_SERVER;
+  const DEVELOPMENT = process.env.NODE_ENV === 'development';
+  const PRODUCTION = process.env.NODE_ENV === 'production';
 
   return withSourceMaps({
     ...defaultConfig,
     env: {
       DEVELOPMENT,
       PRODUCTION,
-
-      API_URL: process.env.NEXT_PUBLIC_API_URL,
-      SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
       VERSION: process.env.BUILD_VERSION || 'dev',
     },
     reactStrictMode: true,
@@ -30,7 +21,7 @@ module.exports = (phase, { defaultConfig }) => {
       }
 
       // Configure Sentry webpack plugin for sourcemaps.
-      if (process.env.SENTRY_DSN && PRODUCTION) {
+      if (PRODUCTION && process.env.NEXT_PUBLIC_SENTRY_DSN) {
         config.plugins.push(
           new SentryWebpackPlugin({
             include: '.next',

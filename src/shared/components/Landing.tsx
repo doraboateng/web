@@ -17,12 +17,6 @@ const LandingPage = () => (
       <Notice>
         We&apos;re currently working on new features... stay tuned!
       </Notice>
-
-      <div style={{ display: 'none' }}>
-        {`Version: ${process.env.VERSION}`}
-        {`API: ${process.env.API_URL}`}
-        {`SDSN: ${process.env.SENTRY_DSN}`}
-      </div>
     </Wrapper>
   </Background>
 );

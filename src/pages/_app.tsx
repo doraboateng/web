@@ -8,10 +8,17 @@ import theme from '../theme';
 import GlobalStyle from '../shared/components/GlobalStyle';
 import { getLocale, getLocalizedUrl } from '../utils/locale';
 
-Sentry.init({
-  enabled: Boolean(process.env.PRODUCTION),
-  dsn: process.env.SENTRY_DSN,
-});
+// Initialize Sentry error monitor.
+if (process.env.PRODUCTION && process.env.NEXT_PUBLIC_SENTRY_DSN) {
+  try {
+    Sentry.init({
+      enabled: Boolean(process.env.PRODUCTION),
+      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    });
+  } catch (error) {
+    // TODO: log error.
+  }
+}
 
 export default class BoatengApp extends App<{err: any}> {
   static getInitialProps = async ({ ctx }: AppContext) => {
