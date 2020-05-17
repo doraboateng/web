@@ -34,9 +34,10 @@ docker rmi --force doraboateng/web:latest
 docker tag doraboateng/web:$(git describe --abbrev=0 --tags) doraboateng/web:latest
 
 # Publish to Docker Hub.
-cat ./.docker-hub-token | docker login --username ... --password-stdin
-docker push doraboateng/web:$(git describe --abbrev=0 --tags)
-docker push doraboateng/web:latest
+cat ./.docker-hub-token \
+    | docker login --username ... --password-stdin \
+    && docker push doraboateng/web:$(git describe --abbrev=0 --tags) \
+    && docker push doraboateng/web:latest
 ```
 
 - [Github releases](https://github.com/kwcay/boateng-web/releases)

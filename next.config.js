@@ -17,8 +17,8 @@ module.exports = (phase, { defaultConfig }) => {
       DEVELOPMENT,
       PRODUCTION,
 
-      API_URL: process.env.API_URL,
-      SENTRY_DSN: process.env.SENTRY_DSN,
+      API_URL: process.env.NEXT_PUBLIC_API_URL,
+      SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
       VERSION: process.env.BUILD_VERSION || 'dev',
     },
     reactStrictMode: true,
