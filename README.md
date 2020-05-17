@@ -46,7 +46,7 @@ If you're on Linux or Mac, you already have a POSIX-compliant terminal.
 docker-compose up --detach
 ```
 
-The app will be available at the URL: http://localhost:3000
+The app will be available at the URL: http://localhost:3300
 
 To stop the app:
 
