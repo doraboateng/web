@@ -5,7 +5,7 @@
     "dev": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "type-check": "yarn run tsc",
-    "test": "echo \"TODO: run tests\"",
+    "test": "jest  --coverage",
     "qa": "yarn lint && yarn type-check && yarn test",
     "build": "next build",
     "start": "next start"
@@ -28,9 +28,13 @@
     "typescript": "^3.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
     "@testing-library/react": "^10.0.4",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
+    "babel-jest": "^26.0.1",
     "babel-plugin-styled-components": "^1.10.7",
     "eslint": "^7.0.0",
     "eslint-config-airbnb-typescript": "^7.2.1",
@@ -39,7 +43,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^4.0.0"
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "jest": "^26.0.1"
   },
   "repository": {
     "type": "git",

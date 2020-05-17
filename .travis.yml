@@ -3,6 +3,18 @@ language: node_js
 node_js:
   - "12"
 
+before_script:
+  # Notify Code Climate.
+  - curl --location
+      https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 >
+      $HOME/bin/code-climate
+  - chmod +x $HOME/bin/code-climate
+  - code-climate before-build
+
+after_script:
+  # Notify Code Climate.
+  - code-climate after-build --exit-code $TRAVIS_TEST_RESULT
+
 notifications:
   email: false
 

@@ -17,7 +17,8 @@ module.exports = (phase, { defaultConfig }) => {
       // Replace "@sentry/node" imports with "@sentry/browser" when building
       // the browser bundle.
       if (!options.isServer) {
-        config.resolve.alias['@sentry/node'] = '@sentry/browser'
+        // eslint-disable-next-line no-param-reassign
+        config.resolve.alias['@sentry/node'] = '@sentry/browser';
       }
 
       // Configure Sentry webpack plugin for sourcemaps.
@@ -27,8 +28,8 @@ module.exports = (phase, { defaultConfig }) => {
             include: '.next',
             ignore: ['node_modules'],
             urlPrefix: '~/_next',
-          })
-        )
+          }),
+        );
       }
 
       return config;
