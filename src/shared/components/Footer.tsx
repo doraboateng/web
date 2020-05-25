@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const Footer = () => (
   <Wrapper>
     <Copy>
-      <a href="https://kwcay.co" target="_blank">Kwahu &amp; Cayes</a>
       <span>&copy;</span>
       <span>{new Date().getFullYear()}</span>
+      <a href="https://kwcay.co" target="_blank">Kwahu &amp; Cayes</a>
     </Copy>
   </Wrapper>
 );
