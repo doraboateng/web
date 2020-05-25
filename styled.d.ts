@@ -3,6 +3,11 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    amber: Color;
+    green: Color;
+    purple: Color;
+    white: Color;
+
     primaryColor: Color;
     accentColor: Color;
     textColor: Color;
@@ -15,5 +20,12 @@ declare module 'styled-components' {
     lineHeight: string;
 
     borderRadius: string;
+
+    mediaQuerySmall: string;
+    mediaQueryMedium: string;
+    mediaQueryLarge: string;
+    mediaQueryExtraLarge: string;
+
+    transitionDuration: string;
   }
 }

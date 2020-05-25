@@ -1,24 +1,15 @@
 import App, { AppContext } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-import * as Sentry from '@sentry/node';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '../theme';
+import bootstrap from '../utils/bootstrap';
 import GlobalStyle from '../shared/components/GlobalStyle';
 import { getLocale, getLocalizedUrl } from '../utils/locale';
 
-// Initialize Sentry error monitor.
-if (process.env.PRODUCTION && process.env.NEXT_PUBLIC_SENTRY_DSN) {
-  try {
-    Sentry.init({
-      enabled: Boolean(process.env.PRODUCTION),
-      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-    });
-  } catch (error) {
-    // TODO: log error.
-  }
-}
+// Bootstrap application.
+bootstrap();
 
 export default class BoatengApp extends App<{err: any}> {
   static getInitialProps = async ({ ctx }: AppContext) => {
