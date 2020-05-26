@@ -11,11 +11,13 @@ interface FormProps {
 }
 
 const SearchForm = (props: FormProps) => {
-  const [isActive, setIsActive] = React.useState<boolean>(false);
+  const [isInputActive, setIsInputActive] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [showResults, setShowResults] = React.useState<boolean>(false);
+  const inputRef = React.useRef(null);
+  const isActive = isInputActive || showResults;
 
-  const handler = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
     if (searchQuery.length  < 1) {
@@ -23,29 +25,41 @@ const SearchForm = (props: FormProps) => {
     }
 
     setShowResults(true);
+    inputRef.current.focus();
   };
+
+  const handleClear = () => {
+    setSearchQuery('');
+    setShowResults(false);
+    inputRef.current.focus();
+  }
 
   return (
     <Wrapper isActive={isActive}>
-       <Form isActive={isActive} onSubmit={handler} noValidate>
-        <Icon {...props} isActive={isActive}>
+       <Form isActive={isActive} onSubmit={handleSubmit} noValidate>
+        <SearchButton {...props} isActive={isActive} onClick={handleSubmit}>
           <FontAwesomeIcon icon="search" />
-        </Icon>
+        </SearchButton>
 
         <Input
           {...props}
           isActive={isActive}
           placeholder="try searching for &quot;love&quot;"
+          ref={inputRef}
           value={searchQuery}
-          onBlur={() => setIsActive(false)}
+          onBlur={() => setIsInputActive(false)}
           onChange={(event) => setSearchQuery(event.target.value)}
-          onFocus={() => setIsActive(true)}
+          onFocus={() => setIsInputActive(true)}
         />
 
         {showResults && (
-          <Results query={searchQuery} />
+          <ClearButton {...props} isActive onClick={handleClear}>
+            <FontAwesomeIcon icon="times" />
+          </ClearButton>
         )}
       </Form>
+
+      {showResults && <Results query={searchQuery} />}
     </Wrapper>
   );
 };
@@ -90,11 +104,23 @@ const Form = styled.form<{isActive: boolean}>`
   transition: background-color ${props => props.theme.transitionDuration};
 `;
 
-const Icon = styled.div<SupportComponentProps>`
+const IconButton = styled.button<SupportComponentProps>`
+  background-color: transparent;
+  border: none;
   border-bottom: 2px solid ${props => getColor(props)};
+  cursor: pointer;
+  display: flex;
+  width: 2rem;
+`;
+
+const SearchButton = styled(IconButton)`
   border-bottom-left-radius: ${props => props.theme.borderRadius};
   padding: .6rem .2rem .6rem 1rem;
-  width: 1rem;
+`;
+
+const ClearButton = styled(IconButton)`
+  border-bottom-right-radius: ${props => props.theme.borderRadius};
+  padding: .6rem 1rem .6rem .2rem;
 `;
 
 const Input = styled.input<SupportComponentProps>`
