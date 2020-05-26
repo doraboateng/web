@@ -2,10 +2,10 @@ import { DefaultTheme } from 'styled-components';
 import Color from 'color';
 
 const theme: DefaultTheme = {
-  amber: Color('#ffc107'),
+  amber: Color('#FFC107'),
   green: Color('#009688'),
-  purple: Color('#8f3988'),
-  white: Color('#fff'),
+  purple: Color('#8F3988'),
+  white: Color('#FFF'),
 
   primaryColor: Color('#009688'),
   accentColor: Color('#ffc107'),

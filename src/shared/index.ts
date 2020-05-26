@@ -10,4 +10,5 @@ export {
   HERO_WHITE,
 } from './components/Hero';
 export { default as HeroImage } from './components/HeroImage';
+export { default as Overlay } from './components/Overlay';
 export { default as Section } from './components/Section';

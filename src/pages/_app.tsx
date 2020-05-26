@@ -30,7 +30,7 @@ export default class BoatengApp extends App<{err: any}> {
   render = () => {
     const { Component, err, pageProps } = this.props;
     const title = 'Dora Boateng';
-    const description = 'A reference of cultures past and present.';
+    const description = 'Languages and cultures reference.';
     const keywords = 'dictionary, encyclopedia, bilingual, multilingual, translation';
 
     return (

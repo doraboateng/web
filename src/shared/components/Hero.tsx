@@ -15,6 +15,8 @@ type HeroStyling =
   | typeof HERO_WHITE;
 
 export interface HeroProps {
+  height?: string;
+  justify?: string;
   padding?: string;
   styling?: HeroStyling;
 }
@@ -26,12 +28,12 @@ const Hero = styled.div<HeroProps>`
   background-size: cover;
   box-sizing: border-box;
   color: ${props => getColor(props).string()};
-  height: 100vh;
+  height: ${props => props.height || '100vh'};
   padding: ${props => props.padding || '1rem'};
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${props => props.justify || 'center'};
 
   em {
     background-color: ${props => getColor(props).fade(0.9).string()};

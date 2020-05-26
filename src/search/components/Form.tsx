@@ -3,6 +3,8 @@ import React from 'react';
 import styled, { StyledProps } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import Results from './Results';
+
 interface FormProps {
   placeholder?: string;
   textColor?: Color;
@@ -10,19 +12,40 @@ interface FormProps {
 
 const SearchForm = (props: FormProps) => {
   const [isActive, setIsActive] = React.useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const [showResults, setShowResults] = React.useState<boolean>(false);
+
+  const handler = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (searchQuery.length  < 1) {
+      return;
+    }
+
+    setShowResults(true);
+  };
 
   return (
     <Wrapper isActive={isActive}>
-      <Icon {...props} isActive={isActive}>
-        <FontAwesomeIcon icon="search" />
-      </Icon>
+       <Form isActive={isActive} onSubmit={handler} noValidate>
+        <Icon {...props} isActive={isActive}>
+          <FontAwesomeIcon icon="search" />
+        </Icon>
 
-      <Input
-        {...props}
-        isActive={isActive}
-        onBlur={() => setIsActive(false)}
-        onFocus={() => setIsActive(true)}
-      />
+        <Input
+          {...props}
+          isActive={isActive}
+          placeholder="try searching for &quot;love&quot;"
+          value={searchQuery}
+          onBlur={() => setIsActive(false)}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          onFocus={() => setIsActive(true)}
+        />
+
+        {showResults && (
+          <Results query={searchQuery} />
+        )}
+      </Form>
     </Wrapper>
   );
 };
@@ -30,7 +53,37 @@ const SearchForm = (props: FormProps) => {
 type SupportComponentProps = StyledProps<FormProps & {isActive: boolean}>;
 
 const Wrapper = styled.div<{isActive: boolean}>`
-  background-color: ${props => props.isActive ? 'white' : 'transparent'};
+  background: ${props => `
+    linear-gradient(
+      217deg,
+      ${props.theme.amber.fade(0.8).string()},
+      ${props.theme.amber.string()} 70%),
+    linear-gradient(
+      127deg,
+      ${props.theme.green.mix(props.theme.amber).fade(0.8).string()},
+      ${props.theme.green.mix(props.theme.amber).string()}),
+    linear-gradient(
+      336deg,
+      ${props.theme.purple.fade(0.8).string()},
+      ${props.theme.purple.string()})
+  `};
+  border-radius: ${props => props.theme.borderRadius};
+  box-shadow: 0 0 30px -10px black;
+  box-sizing: border-box;
+  color: ${props => props.theme.textColor.string()};
+  padding: 1rem;
+  transition: width ${props => props.theme.transitionDuration};
+  
+  @media(min-width: ${props => props.theme.mediaQuerySmall}) {
+    padding: 1.6rem;
+    width: ${props => props.isActive ? '100%' : '400px'};
+  }
+`;
+
+const Form = styled.form<{isActive: boolean}>`
+  background-color: ${props => props.isActive
+    ? props.theme.white.fade(0.4).string()
+    : 'transparent'};
   border-radius: ${props => props.theme.borderRadius};
   display: flex;
   width: 100%;

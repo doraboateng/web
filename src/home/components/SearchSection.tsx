@@ -5,33 +5,47 @@ import { SearchForm } from '../../search';
 import { HeroImage, Section } from '../../shared';
 
 const SearchSection = () => (
-  <HeroImage filmOpacity={0.3}>
-    <Form>
-      <Tagline>
-        Lookup <em>proverbs</em>, <em>stories</em>, and other gems from <em>indigenous</em> cultures around the world. (learn more)
-      </Tagline>
+  <HeroImage filmOpacity={0.6} height="60vh" justify="flex-start">
+    <Tagline>
+      Lookup <em>proverbs</em>, <em>stories</em>, and other <em>gems</em> from <em>Indigenous</em> and <em>African</em> cultures around the world.
+    </Tagline>
 
+    <FormWrapper>
       <SearchForm />
-    </Form>
+    </FormWrapper>
   </HeroImage>
 );
 
-const Form = styled(Section)`
-  background-color: ${props => props.theme.amber.fade(0.1).string()};
-  border-radius: ${props => props.theme.borderRadius};
-  box-shadow: 0 0 30px -10px black;
-  box-sizing: border-box;
-  color: ${props => props.theme.textColor.string()};
-  padding: 2rem;
+const Tagline = styled(Section)`
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 50px;
 
   @media(min-width: ${props => props.theme.mediaQueryMedium}) {
-    width: 600px;
+    font-size: 2rem;
+    line-height: 3rem;
+    text-align: left;
+    margin-top: 70px;
+    width: 700px;
+  }
+
+  em {
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-weight: normal;
+
+    @media(min-width: ${props => props.theme.mediaQueryMedium}) {
+      font-size: 2.8rem;
+    }
   }
 `;
 
-const Tagline = styled.div`
-  em {
-    background-color: ${props => props.theme.white.fade(0.7).string()};
+const FormWrapper = styled(Section)`
+  color: ${props => props.theme.textColor.string()};
+  margin-top: 3rem;
+
+  @media(min-width: ${props => props.theme.mediaQueryMedium}) {
+    margin-top: 2rem;
   }
 `;
 
