@@ -25,15 +25,20 @@ export const supportedLocales: Locale[] = [
 export const getLocale = (request: IncomingMessage): Locale => LOCALE_ENGLISH;
 
 export const getLocalizedUrl = (request: IncomingMessage): string => {
-  const paths = (request.url || '')
+  const host = 'https://www.doraboateng.com';
+  const url = new URL(request.url, host);
+
+  const paths = url.pathname
     .split('/')
     .map(path => decodeURIComponent(path).trim())
     .filter(path => path.length > 0)
-    .map(path => encodeURIComponent(path));
+    .map(path => encodeURI(path));
 
   if (!paths || !supportedLocales.includes((paths[0] as Locale))) {
     paths.unshift(getLocale(request));
   }
 
-  return `/${paths.join('/')}`;
+  url.pathname = `/${paths.join('/')}`;
+
+  return url.toString().replace(host, '');
 };

@@ -1,36 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useGraphQL } from '../../utils/graphql';
+
 interface Props {
   query: string;
 }
 
-const Results = (props: Props) => {
+const graphQuery = `
+  query ($terms: String!) {
+    search(query: $terms) {
+      type
+      title
+      resourceId
+    }
+  }
+`;
+
+const Results = ({ query }: Props) => {
+  const { isLoading, result } = useGraphQL(graphQuery, { terms: query });
+
+  if (isLoading) {
+    return <Wrapper>...</Wrapper>
+  }
+
+  if (!result || result.search.length < 1) {
+    return <Wrapper>No results found.</Wrapper>
+  }
+
   return (
     <Wrapper>
-      Searching for {props.query}...
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
-      <br />
-      Hello
+      {result.search.map(({ title, resourceId }) => (
+        <div key={resourceId}>{title}</div>
+      ))}
     </Wrapper>
   );
 };

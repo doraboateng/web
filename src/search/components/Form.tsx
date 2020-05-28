@@ -1,4 +1,5 @@
 import Color from 'color';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled, { StyledProps } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +12,7 @@ interface FormProps {
 }
 
 const SearchForm = (props: FormProps) => {
+  const router = useRouter();
   const [isInputActive, setIsInputActive] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [showResults, setShowResults] = React.useState<boolean>(false);
@@ -19,10 +21,22 @@ const SearchForm = (props: FormProps) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    const query = searchQuery.trim();
 
-    if (searchQuery.length  < 1) {
+    if (query !== searchQuery) {
+      setSearchQuery(query);
+    }
+
+    if (query.length  < 1) {
       return;
     }
+
+    const host = 'https://www.doraboateng.com';
+    const url = new URL(router.asPath, host);
+    url.searchParams.set('q', query);
+    const href = url.toString().replace(host, '');
+    // router.push(href, href, { shallow: true });
+    history.pushState({}, '', href);
 
     setShowResults(true);
     inputRef.current.focus();
