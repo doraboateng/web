@@ -8,7 +8,7 @@ export const fetchGraphQL = (
   query: string,
   vars?: object | string,
 ) => {
-  const host = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8800';
+  const host = process.env.NEXT_PUBLIC_API_URL || 'https://api.doraboateng.com';
   const variables = typeof vars === 'string' ? JSON.parse(vars) : vars;
 
   return fetch(`${host}/graphql`, {
