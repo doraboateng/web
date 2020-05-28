@@ -36,7 +36,7 @@ docker tag doraboateng/web:$(git describe --abbrev=0 --tags) doraboateng/web:lat
 
 # Publish to Docker Hub.
 cat ./.docker-hub-token \
-    | docker login --username ... --password-stdin \
+    | docker login --username $(cat ./.docker-hub-username) --password-stdin \
     && docker push doraboateng/web:$(git describe --abbrev=0 --tags) \
     && docker push doraboateng/web:latest
 ```

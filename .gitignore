@@ -6,6 +6,10 @@ dist/
 # Dependencies
 /node_modules
 
+# Docker Hub
+.docker-hub-token
+.docker-hub-username
+
 # IDEs
 .idea
 .vscode
@@ -17,7 +21,6 @@ dist/
 
 # Miscellaneous
 tmp/
-.docker-hub-token
 .DS_Store
 .env
 Thumb.db
