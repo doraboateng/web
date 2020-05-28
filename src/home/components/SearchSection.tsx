@@ -7,7 +7,8 @@ import { HeroImage, Section } from '../../shared';
 const SearchSection = () => (
   <HeroImage filmOpacity={0.6} height="60vh" justify="flex-start">
     <Tagline>
-      Lookup <em>proverbs</em>, <em>stories</em>, and other <em>gems</em> from <em>Indigenous</em> and <em>African</em> cultures around the world.
+      Learn about <em>Indigenous</em> and <em>African</em> heritage.
+      Find <em>proverbs</em>, <em>stories</em>, and other cultural gems.
     </Tagline>
 
     <FormWrapper>

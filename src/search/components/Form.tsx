@@ -73,7 +73,7 @@ const SearchForm = (props: FormProps) => {
         )}
       </Form>
 
-      {showResults && <Results query={searchQuery} />}
+      <Results query={searchQuery} visible={showResults} />
     </Wrapper>
   );
 };
@@ -83,17 +83,11 @@ type SupportComponentProps = StyledProps<FormProps & {isActive: boolean}>;
 const Wrapper = styled.div<{isActive: boolean}>`
   background: ${props => `
     linear-gradient(
-      217deg,
-      ${props.theme.amber.fade(0.8).string()},
-      ${props.theme.amber.string()} 70%),
-    linear-gradient(
-      127deg,
-      ${props.theme.green.mix(props.theme.amber).fade(0.8).string()},
-      ${props.theme.green.mix(props.theme.amber).string()}),
-    linear-gradient(
-      336deg,
-      ${props.theme.purple.fade(0.8).string()},
-      ${props.theme.purple.string()})
+     45deg,
+      ${props.theme.green.mix(props.theme.amber).string()}, 0.8%,
+      ${props.theme.amber.string()} 20%, 99.2%,
+      ${props.theme.purple.mix(props.theme.amber).string()}
+    )
   `};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 0 30px -10px black;

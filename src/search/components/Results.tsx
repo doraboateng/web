@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -5,6 +7,7 @@ import { useGraphQL } from '../../utils/graphql';
 
 interface Props {
   query: string;
+  visible: boolean;
 }
 
 const graphQuery = `
@@ -17,27 +20,51 @@ const graphQuery = `
   }
 `;
 
-const Results = ({ query }: Props) => {
+const Results = ({ query, visible }: Props) => {
   const { isLoading, result } = useGraphQL(graphQuery, { terms: query });
+  const router = useRouter();
+  const { locale } = router.query;
+
+  if (!visible) {
+    return null;
+  }
 
   if (isLoading) {
     return <Wrapper>...</Wrapper>
   }
 
   if (!result || result.search.length < 1) {
-    return <Wrapper>No results found.</Wrapper>
+    return <Wrapper>Could not find any results for {query}.</Wrapper>
   }
 
   return (
     <Wrapper>
-      {result.search.map(({ title, resourceId }) => (
-        <div key={resourceId}>{title}</div>
-      ))}
+      {result.search.map(({ resourceId, title, type }) => {
+        const linkProps = {
+          href: '/',
+          as: '/',
+        }
+
+        switch (type) {
+          case 'language':
+            linkProps.href = '/[locale]/[langCode]';
+            linkProps.as = `/${locale}/${resourceId}`;
+            break;
+        }
+
+        return (
+          <Result key={resourceId}>
+            <Link {...linkProps}>
+              <a>{title}</a>
+            </Link>
+          </Result>
+        );
+      })}
     </Wrapper>
   );
 };
 
-const Wrapper =  styled.div`
+const Wrapper = styled.div`
   background-color: ${props => props.theme.amber.lighten(0.9).string()};
   box-shadow: 0 7px 40px -10px;
   max-height: 300px;
@@ -48,7 +75,21 @@ const Wrapper =  styled.div`
   left: 0;
   right: 0;
   margin: .4rem 1.6rem 0;
-  padding: 1rem 1.6rem;
+`;
+
+const Result = styled.div`
+  a {
+    background-color: transparent;
+    color: ${props => props.theme.textColor.string()};
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    transition: background-color ${props => props.theme.transitionDuration};
+
+    &:hover {
+      background-color: ${props => props.theme.amber.lighten(0.7).string()};
+    }
+  }
 `;
 
 export default Results;
