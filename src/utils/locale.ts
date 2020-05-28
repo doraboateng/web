@@ -25,10 +25,12 @@ export const supportedLocales: Locale[] = [
 export const getLocale = (request: IncomingMessage): Locale => LOCALE_ENGLISH;
 
 export const getLocalizedUrl = (request: IncomingMessage): string => {
-  const host = 'https://www.doraboateng.com';
-  const url = new URL(request.url, host);
+  const [path, queryString] = (request.url || '').split('?');
 
-  const paths = url.pathname
+  console.log('path', path);
+  console.log('q', queryString)
+
+  const paths = path
     .split('/')
     .map(path => decodeURIComponent(path).trim())
     .filter(path => path.length > 0)
@@ -38,7 +40,11 @@ export const getLocalizedUrl = (request: IncomingMessage): string => {
     paths.unshift(getLocale(request));
   }
 
-  url.pathname = `/${paths.join('/')}`;
+  let url = `/${paths.join('/')}`;
 
-  return url.toString().replace(host, '');
+  if (queryString) {
+    url += `?${queryString}`
+  }
+
+  return url;
 };
