@@ -1,6 +1,6 @@
 {
   "name": "boateng-web",
-  "version": "0.9.6",
+  "version": "0.10.1",
   "scripts": {
     "dev": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
