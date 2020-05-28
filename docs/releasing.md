@@ -1,6 +1,7 @@
 # Creating a release
 
->TODO
+>TODO: create pre-releases first
+>TODO: script it
 
 1. Make sure all tests pass:
 
