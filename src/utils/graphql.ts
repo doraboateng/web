@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import useSWR, { responseInterface } from 'swr';
 import fetch from 'unfetch';
 
+import logger from './logger';
+
 export const fetchGraphQL = (
   query: string,
   vars?: object | string,
@@ -32,7 +34,7 @@ export const useGraphQL = (
   } = useSWR([query, JSON.stringify(variables)], fetchGraphQL);
 
   if (error) {
-    console.log('TODO: log error to Sentry', error);
+    logger.warning(`useSWR error in useGrapQL: ${error}`);
   }
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export const useGraphQL = (
 
     response && !response.bodyUsed && response.json().then(({ data, errors }) => {
       if (errors) {
-        console.log('TODO: log error to Sentry', response.status, errors);
+        logger.warning(`API error in useGrapQL (${response.status}): ${errors}`);
       } else {
         setResult(data);
       }

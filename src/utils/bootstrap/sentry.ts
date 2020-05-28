@@ -8,7 +8,7 @@ const bootstrapSentry = () =>  {
         dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
       });
     } catch (error) {
-      // TODO: log error.
+      console.error(error);
     }
   }
 };
