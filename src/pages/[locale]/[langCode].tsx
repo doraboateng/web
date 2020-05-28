@@ -23,7 +23,8 @@ const query = `
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const variables = { code: params.langCode };
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, {
+  const apiHost = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8800';
+  const response = await fetch(`${apiHost}/graphql`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

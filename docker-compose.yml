@@ -14,7 +14,7 @@ services:
     ports:
       - "3300:3300"
     volumes:
-      - .:/boateng-web
+      - .:/boateng-web:cached
   api:
     image: doraboateng/api:latest
     depends_on:

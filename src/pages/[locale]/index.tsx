@@ -1,9 +1,7 @@
 import React from 'react';
 
-import Landing from '../../shared/components/Landing';
+import HomePage from '../../home/Page';
 
-const App = () => (
-  <Landing />
-);
+const App = () => <HomePage />;
 
 export default App;
