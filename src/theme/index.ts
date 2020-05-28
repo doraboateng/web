@@ -2,6 +2,11 @@ import { DefaultTheme } from 'styled-components';
 import Color from 'color';
 
 const theme: DefaultTheme = {
+  amber: Color('#FFC107'),
+  green: Color('#009688'),
+  purple: Color('#8F3988'),
+  white: Color('#FFF'),
+
   primaryColor: Color('#009688'),
   accentColor: Color('#ffc107'),
   textColor: Color('#333'),
@@ -14,6 +19,13 @@ const theme: DefaultTheme = {
   lineHeight: '1.6',
 
   borderRadius: '2px',
+
+  mediaQuerySmall: '576px',
+  mediaQueryMedium: '768px',
+  mediaQueryLarge: '992px',
+  mediaQueryExtraLarge: '1200px',
+
+  transitionDuration: '0.3s',
 };
 
 export default theme;

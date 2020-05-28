@@ -25,15 +25,26 @@ export const supportedLocales: Locale[] = [
 export const getLocale = (request: IncomingMessage): Locale => LOCALE_ENGLISH;
 
 export const getLocalizedUrl = (request: IncomingMessage): string => {
-  const paths = (request.url || '')
+  const [path, queryString] = (request.url || '').split('?');
+
+  console.log('path', path);
+  console.log('q', queryString)
+
+  const paths = path
     .split('/')
     .map(path => decodeURIComponent(path).trim())
     .filter(path => path.length > 0)
-    .map(path => encodeURIComponent(path));
+    .map(path => encodeURI(path));
 
   if (!paths || !supportedLocales.includes((paths[0] as Locale))) {
     paths.unshift(getLocale(request));
   }
 
-  return `/${paths.join('/')}`;
+  let url = `/${paths.join('/')}`;
+
+  if (queryString) {
+    url += `?${queryString}`
+  }
+
+  return url;
 };
