@@ -31,8 +31,8 @@ docker build \
     .
 
 # Tag latest release.
-docker rmi --force doraboateng/web:latest
-docker tag doraboateng/web:$(git describe --abbrev=0 --tags) doraboateng/web:latest
+docker rmi --force doraboateng/web:latest \
+    && docker tag doraboateng/web:$(git describe --abbrev=0 --tags) doraboateng/web:latest
 
 # Publish to Docker Hub.
 cat ./.docker-hub-token \
@@ -42,4 +42,4 @@ cat ./.docker-hub-token \
 ```
 
 - [Github releases](https://github.com/kwcay/boateng-web/releases)
-- [Docker Hub releases](https://hub.docker.com/repository/docker/doraboateng/web/tags)
+- [Docker Hub releases](https://hub.docker.com/r/doraboateng/web/tags)
