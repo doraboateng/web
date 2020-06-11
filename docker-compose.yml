@@ -1,5 +1,6 @@
 version: "3.4"
 services:
+
   web:
     image: doraboateng/web:dev
     build:
@@ -15,6 +16,7 @@ services:
       - "3300:3300"
     volumes:
       - .:/boateng-web:cached
+
   api:
     image: doraboateng/api:latest
     depends_on:
@@ -23,7 +25,6 @@ services:
     ports:
       - "18800:8800"
 
-  # TODO: doraboateng/dgraph:v20.03.1-01
   zero:
     image: dgraph/dgraph:v20.03.1
     command: >-
@@ -36,8 +37,9 @@ services:
         --profile_mode block
         -v=2
     volumes:
-      - ./tmp/dgraph/zero:/data/zero
+      - dgraph_vol:/dgraph:delegated
     working_dir: /data/zero
+
   alpha:
     image: dgraph/dgraph:v20.03.1
     command: >-
@@ -54,5 +56,8 @@ services:
     depends_on:
       - zero
     volumes:
-      - ./tmp/dgraph/alpha:/data/alpha
+      - dgraph_vol:/dgraph:delegated
     working_dir: /data/alpha
+
+volumes:
+  dgraph_vol:
