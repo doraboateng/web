@@ -7,8 +7,10 @@ Dora Boateng: A reference of cultures past and present.
 
 >TODO: quick mission and intro
 
+_Looking to contribute? Read our [contribution notes here](https://github.com/kwcay/boateng-web/blob/stable/docs/contributing.md)._
+
 <details>
-    <summary>Contents</summary>
+    <summary>Table of contents</summary>
 
 - [Local setup](#local-setup)
     - [Requirements](#requirements)
@@ -27,16 +29,11 @@ Dora Boateng: A reference of cultures past and present.
 
 - [Docker](https://www.docker.com) & [Docker Compose](https://docs.docker.com/compose/install)
 - [Visual Studio Code](https://code.visualstudio.com)
-- A POSIX-compliant terminal, such as:
-    - [Visual Studio Code terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
-    - [cmder](https://cmder.net)
-    - [Cygwin](https://www.cygwin.com)
-    - [Bash](https://www.gnu.org/software/bash)
-    - [Zsh](https://www.zsh.org)
+- A POSIX-compliant terminal, such as: [Visual Studio Code terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), [cmder](https://cmder.net), [Cygwin](https://www.cygwin.com), [Bash](https://www.gnu.org/software/bash), [Zsh](https://www.zsh.org), or [others](https://alternativeto.net/software/zsh).
 
-If you're on Linux or Mac, you already have a POSIX-compliant terminal.
+>Note: If you're on Linux or Mac, you already have a POSIX-compliant terminal.
 
-**Optional, but recommended:**
+### Optional, but recommended:
 
 - [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements)
 
@@ -51,10 +48,16 @@ The app will be available at the URL: http://localhost:3300
 To stop the app:
 
 ```shell
+docker-compose stop
+```
+
+To stop the app and remove all containers:
+
+```shell
 docker-compose down
 ```
 
-## Useful commands
+## Other useful commands
 
 ```shell
 # Tail the last 5 lines from the logs.
