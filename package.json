@@ -1,11 +1,11 @@
 {
   "name": "boateng-web",
-  "version": "0.10.3.rc1",
+  "version": "0.10.4",
   "scripts": {
     "dev": "next",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "type-check": "yarn run tsc",
-    "test": "jest  --coverage",
+    "test": "jest --coverage",
     "qa": "yarn lint && yarn type-check && yarn test",
     "build": "next build",
     "start": "next start"
