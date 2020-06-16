@@ -34,6 +34,6 @@ const Tagline = styled(Section)<Props>`
 Tagline.defaultProps = {
   textAlign: 'left',
   width: '700px',
-}
+};
 
 export default Tagline;

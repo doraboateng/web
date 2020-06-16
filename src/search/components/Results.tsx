@@ -30,11 +30,11 @@ const Results = ({ query, visible }: Props) => {
   }
 
   if (isLoading) {
-    return <Wrapper>...</Wrapper>
+    return <Wrapper>...</Wrapper>;
   }
 
   if (!result || result.search.length < 1) {
-    return <Wrapper>Could not find any results for {query}.</Wrapper>
+    return <Wrapper>Could not find any results for {query}.</Wrapper>;
   }
 
   return (
@@ -43,19 +43,23 @@ const Results = ({ query, visible }: Props) => {
         const linkProps = {
           href: '/',
           as: '/',
-        }
+        };
 
         switch (type) {
           case 'language':
             linkProps.href = '/[locale]/[langCode]';
             linkProps.as = `/${locale}/${resourceId}`;
             break;
+
+          default:
+            linkProps.href = '/';
+            linkProps.as = '/';
         }
 
         return (
           <Result key={resourceId}>
             <Link {...linkProps}>
-              <a>{title}</a>
+              {title}
             </Link>
           </Result>
         );

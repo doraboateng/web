@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/node';
 
-const bootstrapSentry = () =>  {
+const bootstrapSentry = () => {
   if (process.env.PRODUCTION && process.env.NEXT_PUBLIC_SENTRY_DSN) {
     try {
       Sentry.init({

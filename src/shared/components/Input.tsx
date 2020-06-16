@@ -21,7 +21,7 @@ const Input = (props: Props) => {
   const handleClearInput = () => {
     setValue('');
     inputRef.current.focus();
-  }
+  };
 
   return (
     <Wrapper isActive={isActive} padding={props.padding}>
@@ -39,7 +39,7 @@ const Input = (props: Props) => {
         type={props.type}
         value={value}
         onBlur={() => setIsActive(false)}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={event => setValue(event.target.value)}
         onFocus={() => setIsActive(true)}
       />
 
@@ -63,9 +63,9 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-  background-color: ${props => props.isActive
+  background-color: ${props => (props.isActive
     ? props.theme.white.fade(0.4).string()
-    : 'transparent'};
+    : 'transparent')};
   border-radius: ${props => props.theme.borderRadius};
   display: flex;
   padding: ${props => props.padding};
@@ -76,6 +76,10 @@ const Wrapper = styled.div<WrapperProps>`
 interface IconButtonProps {
   textColor?: Color;
 }
+
+const getColor = (
+  props: StyledProps<IconButtonProps | TextInputProps>,
+): string => (props.textColor || props.theme.textColor).string();
 
 const IconButton = styled.button<IconButtonProps>`
   background-color: transparent;
@@ -117,8 +121,5 @@ const TextInput = styled.input<TextInputProps>`
     color: ${props => getColor(props)};
   }
 `;
-
-const getColor = (props: StyledProps<IconButtonProps | TextInputProps>): string =>
-  (props.textColor || props.theme.textColor).string();
 
 export default Input;

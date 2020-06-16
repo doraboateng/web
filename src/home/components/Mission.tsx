@@ -6,8 +6,12 @@ import { Hero, HERO_GREEN, Input } from '../../shared';
 
 const SearchSection = () => {
   const onSubmit = () => {
-    window.open('https://tinyletter.com/doraboateng', 'popupwindow', 'scrollbars=yes,width=800,height=600');
-  }
+    window.open(
+      'https://tinyletter.com/doraboateng',
+      'popupwindow',
+      'scrollbars=yes,width=800,height=600',
+    );
+  };
 
   return (
     <Hero height="45vh" justify="flex-start" styling={HERO_GREEN}>
@@ -16,7 +20,7 @@ const SearchSection = () => {
           Learn about <em>Indigenous</em> and <em>African</em> heritage.
           Help <em>preserve</em> and <em>promote</em> our languages and cultures.
         </Tagline>
-  
+
         <FormWrapper>
           <Form
             action="https://tinyletter.com/doraboateng"
@@ -36,7 +40,7 @@ const SearchSection = () => {
       </Row>
     </Hero>
   );
-}
+};
 
 const Row = styled.div`
   align-items: center;

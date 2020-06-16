@@ -14,7 +14,7 @@ const Overlay = (props: Props) => (
           <FontAwesomeIcon icon="times" />
         </Close>
       </Header>
-      
+
       <Body>{props.children}</Body>
     </Wrapper>
   </Background>

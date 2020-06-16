@@ -27,7 +27,7 @@ const SearchForm = (props: FormProps) => {
       setSearchQuery(query);
     }
 
-    if (query.length  < 1) {
+    if (query.length < 1) {
       return;
     }
 
@@ -36,6 +36,7 @@ const SearchForm = (props: FormProps) => {
     url.searchParams.set('q', query);
     const href = url.toString().replace(host, '');
     // router.push(href, href, { shallow: true });
+    // eslint-disable-next-line no-restricted-globals
     history.pushState({}, '', href);
 
     setShowResults(true);
@@ -46,11 +47,11 @@ const SearchForm = (props: FormProps) => {
     setSearchQuery('');
     setShowResults(false);
     inputRef.current.focus();
-  }
+  };
 
   return (
     <Wrapper isActive={isActive}>
-       <Form isActive={isActive} onSubmit={handleSubmit} noValidate>
+      <Form isActive={isActive} onSubmit={handleSubmit} noValidate>
         <SearchButton {...props} isActive={isActive} onClick={handleSubmit}>
           <FontAwesomeIcon icon="search" />
         </SearchButton>
@@ -62,7 +63,7 @@ const SearchForm = (props: FormProps) => {
           ref={inputRef}
           value={searchQuery}
           onBlur={() => setIsInputActive(false)}
-          onChange={(event) => setSearchQuery(event.target.value)}
+          onChange={event => setSearchQuery(event.target.value)}
           onFocus={() => setIsInputActive(true)}
         />
 
@@ -98,19 +99,23 @@ const Wrapper = styled.div<{isActive: boolean}>`
   
   @media(min-width: ${props => props.theme.mediaQuerySmall}) {
     padding: 1.6rem;
-    width: ${props => props.isActive ? '500px' : '400px'};
+    width: ${props => (props.isActive ? '500px' : '400px')};
   }
 `;
 
 const Form = styled.form<{isActive: boolean}>`
-  background-color: ${props => props.isActive
+  background-color: ${props => (props.isActive
     ? props.theme.white.fade(0.4).string()
-    : 'transparent'};
+    : 'transparent')};
   border-radius: ${props => props.theme.borderRadius};
   display: flex;
   width: 100%;
   transition: background-color ${props => props.theme.transitionDuration};
 `;
+
+const getColor = (props: SupportComponentProps): string => (
+  props.textColor || props.theme.textColor
+).string();
 
 const IconButton = styled.button<SupportComponentProps>`
   background-color: transparent;
@@ -147,8 +152,5 @@ const Input = styled.input<SupportComponentProps>`
     color: ${props => getColor(props)};
   }
 `;
-
-const getColor = (props: SupportComponentProps): string =>
-  (props.textColor || props.theme.textColor).string();
 
 export default SearchForm;

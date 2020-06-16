@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import useSWR, { responseInterface } from 'swr';
+import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 import fetch from 'unfetch';
 
 import logger from './logger';
@@ -12,15 +12,14 @@ export const fetchGraphQL = (
   const variables = typeof vars === 'string' ? JSON.parse(vars) : vars;
 
   return fetch(`${host}/graphql`, {
-      body: JSON.stringify({ query, variables }),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      method: 'post',
+    body: JSON.stringify({ query, variables }),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
-  );
-}
+    method: 'post',
+  });
+};
 
 export const useGraphQL = (
   query: string,
@@ -42,14 +41,18 @@ export const useGraphQL = (
       return;
     }
 
-    response && !response.bodyUsed && response.json().then(({ data, errors }) => {
-      if (errors) {
-        logger.warning(`API error in useGrapQL (${response.status}): ${errors}`);
-      } else {
-        setResult(data);
-      }
-    });
-  }, [query, variables, isValidating]);
+    if (response && !response.bodyUsed) {
+      response.json().then(({ data, errors }) => {
+        if (errors) {
+          logger.warning(`API error in useGrapQL (${response.status}): ${errors}`);
+        } else {
+          setResult(data);
+        }
+
+        return null;
+      }).catch(() => {});
+    }
+  }, [query, response, variables, isValidating]);
 
   return { isLoading: isValidating, result };
-}
+};

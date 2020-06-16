@@ -28,13 +28,13 @@ export const getLocalizedUrl = (request: IncomingMessage): string => {
   const [path, queryString] = (request.url || '').split('?');
 
   console.log('path', path);
-  console.log('q', queryString)
+  console.log('q', queryString);
 
   const paths = path
     .split('/')
-    .map(path => decodeURIComponent(path).trim())
-    .filter(path => path.length > 0)
-    .map(path => encodeURI(path));
+    .map(p => decodeURIComponent(p).trim())
+    .filter(p => p.length > 0)
+    .map(p => encodeURI(p));
 
   if (!paths || !supportedLocales.includes((paths[0] as Locale))) {
     paths.unshift(getLocale(request));
@@ -43,7 +43,7 @@ export const getLocalizedUrl = (request: IncomingMessage): string => {
   let url = `/${paths.join('/')}`;
 
   if (queryString) {
-    url += `?${queryString}`
+    url += `?${queryString}`;
   }
 
   return url;

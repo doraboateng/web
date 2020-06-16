@@ -19,7 +19,7 @@ const HeroImage = (props: HeroImageProps) => {
       </Film>
     </Hero>
   );
-}
+};
 
 const Film = styled.div<{justify?: string, opacity?: number, padding?: string}>`
   background-color: rgba(0, 0, 0, ${props => props.opacity || 0.5});

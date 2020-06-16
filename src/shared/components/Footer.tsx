@@ -6,7 +6,9 @@ const Footer = () => (
     <Copy>
       <span>&copy;</span>
       <span>{new Date().getFullYear()}</span>
-      <a href="https://kwcay.co" target="_blank">Kwahu &amp; Cayes</a>
+      <a href="https://kwcay.co" rel="noreferrer" target="_blank">
+        Kwahu &amp; Cayes
+      </a>
     </Copy>
   </Wrapper>
 );

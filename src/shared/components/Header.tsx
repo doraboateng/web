@@ -5,7 +5,7 @@ const Header = () => (
   <Wrapper>
     <Logo>Dora Boateng</Logo>
 
-    <span style={{color: 'transparent'}}>Menu</span>
+    <span style={{ color: 'transparent' }}>Menu</span>
   </Wrapper>
 );
 
@@ -26,6 +26,6 @@ const Wrapper = styled.header`
   }
 `;
 
-const Logo = styled.div``; 
+const Logo = styled.div``;
 
 export default Header;

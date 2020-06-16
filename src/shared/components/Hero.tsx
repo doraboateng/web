@@ -23,6 +23,48 @@ export interface HeroProps {
 
 type StyledHeroProps = StyledProps<HeroProps>;
 
+const heroImg = '/assets/images/bg/2d367c83ace8e17b5d262944c7044aee.jpg';
+
+const getBackground = ({ styling, theme }: StyledHeroProps): string => {
+  switch (styling) {
+    case HERO_IMAGE:
+      return `center center no-repeat url("${heroImg}")`;
+
+    case HERO_AMBER:
+      return `linear-gradient(
+        ${theme.amber.string()},
+        ${theme.amber.darken(0.3).string()}
+      )`;
+
+    case HERO_GREEN:
+      return `linear-gradient(
+        ${theme.green.string()},
+        ${theme.green.darken(0.3).string()}
+      )`;
+
+    case HERO_PURPLE:
+      return `linear-gradient(
+        ${theme.purple.string()},
+        ${theme.purple.darken(0.3).string()}
+      )`;
+
+    default:
+      return 'white';
+  }
+};
+
+const getColor = ({ styling, theme }: StyledHeroProps): Color => {
+  switch (styling) {
+    case HERO_IMAGE:
+    case HERO_GREEN:
+    case HERO_PURPLE:
+      return theme.white;
+
+    default:
+      return theme.textColor;
+  }
+};
+
 const Hero = styled.div<HeroProps>`
   background: ${props => getBackground(props)};
   background-size: cover;
@@ -43,45 +85,5 @@ const Hero = styled.div<HeroProps>`
     padding: 1px 5px;
   }
 `;
-
-const getBackground = ({ styling, theme }: StyledHeroProps): string => {
-  switch (styling) {
-    case HERO_IMAGE:
-      return 'center center no-repeat url("/assets/images/bg/2d367c83ace8e17b5d262944c7044aee.jpg")';
-
-    case HERO_AMBER:
-      return `linear-gradient(
-        ${theme.amber.string()},
-        ${theme.amber.darken(0.3).string()}
-      )`;
-
-    case HERO_GREEN:
-      return `linear-gradient(
-        ${theme.green.string()},
-        ${theme.green.darken(0.3).string()}
-      )`;
-
-    case HERO_PURPLE:
-      return `linear-gradient(
-        ${theme.purple.string()},
-        ${theme.purple.darken(0.3).string()}
-      )`;
-    
-    default:
-      return 'white';
-  }
-}
-
-const getColor = ({ styling, theme }: StyledHeroProps): Color => {
-  switch (styling) {
-    case HERO_IMAGE:
-    case HERO_GREEN:
-    case HERO_PURPLE:
-    return theme.white;
-    
-    default:
-      return theme.textColor;
-  }
-}
 
 export default Hero;
