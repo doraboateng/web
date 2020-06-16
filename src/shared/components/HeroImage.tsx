@@ -23,8 +23,10 @@ const HeroImage = (props: HeroImageProps) => {
 
 const Film = styled.div<{justify?: string, opacity?: number, padding?: string}>`
   background-color: rgba(0, 0, 0, ${props => props.opacity || 0.5});
+  box-sizing: border-box;
   height: 100%;
   padding: ${props => props.padding || '1rem'};
+  position: relative;
 
   display: flex;
   flex-direction: column;
