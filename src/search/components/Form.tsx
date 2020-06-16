@@ -98,7 +98,7 @@ const Wrapper = styled.div<{isActive: boolean}>`
   
   @media(min-width: ${props => props.theme.mediaQuerySmall}) {
     padding: 1.6rem;
-    width: ${props => props.isActive ? '100%' : '400px'};
+    width: ${props => props.isActive ? '500px' : '400px'};
   }
 `;
 

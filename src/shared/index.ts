@@ -1,5 +1,6 @@
 export { default as Footer } from './components/Footer';
 export { default as Header } from './components/Header';
+export { default as Input } from './components/Input';
 export { Heading } from './components/Headings';
 export {
   default as Hero,
