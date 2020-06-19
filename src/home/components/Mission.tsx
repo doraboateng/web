@@ -15,8 +15,8 @@ const SearchSection = () => {
 
   return (
     <Hero height="45vh" justify="flex-start" styling={HERO_GREEN}>
-      <Row>
-        <Tagline textAlign="right" width="600px">
+      <HeroInner>
+        <Tagline textAlign="right" width="auto">
           Learn about <em>Indigenous</em> and <em>African</em> heritage.
           Help <em>preserve</em> and <em>promote</em> our languages and cultures.
         </Tagline>
@@ -37,14 +37,19 @@ const SearchSection = () => {
             <input type="hidden" value="1" name="embed" />
           </Form>
         </FormWrapper>
-      </Row>
+      </HeroInner>
     </Hero>
   );
 };
 
-const Row = styled.div`
+const HeroInner = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
+
+  @media(min-width: ${props => props.theme.mediaQueryMedium}) {
+    flex-direction: row;
+  }
 `;
 
 const FormWrapper = styled.div`

@@ -85,7 +85,7 @@ const Wrapper = styled.div<{isActive: boolean}>`
   background: ${props => `
     linear-gradient(
      45deg,
-      ${props.theme.green.mix(props.theme.amber).string()}, 0.8%,
+      ${props.theme.purple.mix(props.theme.amber).string()}, 0.8%,
       ${props.theme.amber.string()} 20%, 99.2%,
       ${props.theme.purple.mix(props.theme.amber).string()}
     )
@@ -99,7 +99,7 @@ const Wrapper = styled.div<{isActive: boolean}>`
   
   @media(min-width: ${props => props.theme.mediaQuerySmall}) {
     padding: 1.6rem;
-    width: ${props => (props.isActive ? '500px' : '400px')};
+    width: ${props => (props.isActive ? '550px' : '450px')};
   }
 `;
 

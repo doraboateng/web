@@ -28,7 +28,7 @@ const FormWrapper = styled(Section)`
 
   @media(min-width: ${props => props.theme.mediaQueryMedium}) {
     margin-top: 2rem;
-    max-width: 500px;
+    max-width: 550px;
   }
 `;
 

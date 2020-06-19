@@ -67,6 +67,7 @@ const Wrapper = styled.div<WrapperProps>`
     ? props.theme.white.fade(0.4).string()
     : 'transparent')};
   border-radius: ${props => props.theme.borderRadius};
+  box-sizing: border-box;
   display: flex;
   padding: ${props => props.padding};
   transition: background-color ${props => props.theme.transitionDuration};
