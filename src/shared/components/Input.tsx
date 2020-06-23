@@ -65,7 +65,7 @@ interface WrapperProps {
 const Wrapper = styled.div<WrapperProps>`
   background-color: ${props => (props.isActive
     ? props.theme.white.fade(0.4).string()
-    : 'transparent')};
+    : props.theme.white.fade(0.7).string())};
   border-radius: ${props => props.theme.borderRadius};
   box-sizing: border-box;
   display: flex;
