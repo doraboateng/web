@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Tagline from './Tagline';
 import { SearchForm } from '../../search';
-import { HeroImage, Section } from '../../shared';
+import { HeroImage, Section, Tagline } from '../../shared';
 
 const SearchSection = () => (
-  <HeroImage filmOpacity={0.6} height="35vh" justify="flex-start">
+  <HeroImage filmOpacity={0.6} height="45vh" justify="flex-start">
     <HeroInner>
       <Tagline>
         A Reference of Cultures<br />

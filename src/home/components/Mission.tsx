@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Tagline from './Tagline';
-import { Hero, HERO_GREEN, Input } from '../../shared';
+import {
+  HERO_GREEN,
+
+  Hero,
+  Input,
+  Tagline,
+} from '../../shared';
 
 const SearchSection = () => {
   const onSubmit = () => {
@@ -50,7 +55,7 @@ const MissionHero = styled(Hero)`
 
   @media(min-width: ${props => props.theme.mediaQueryLarge}) {
     flex-direction: row;
-    height: 55vh;
+    height: 40vh;
   }
 `;
 
@@ -62,7 +67,7 @@ const Message = styled(Tagline)`
   }
 
   @media(min-width: ${props => props.theme.mediaQueryLarge}) {
-    max-width: 45vw;
+    max-width: 50vw;
     text-align: right;
   }
 
@@ -87,7 +92,7 @@ const FormWrapper = styled.div`
 
 const Form = styled.form`
   text-align:center;
-  width: 400px;
+  width: 360px;
 `;
 
 export default SearchSection;
