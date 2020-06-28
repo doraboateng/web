@@ -10,7 +10,7 @@ services:
     depends_on:
       - api
     environment:
-      NEXT_PUBLIC_API_URL: http://api
+      NEXT_PUBLIC_API_URL: http://api:8800
       BUILD_VERSION: dev
     ports:
       - "3300:3300"
@@ -22,11 +22,14 @@ services:
     depends_on:
       - zero
       - alpha
+    environment:
+      BOATENG_API_PORT: 8800 # Backwards compatibility
+      PORT: 8800
     ports:
-      - "18800:8800"
+      - "8800:8800"
 
   zero:
-    image: dgraph/dgraph:v20.03.1
+    image: doraboateng/graph:latest
     command: >-
       dgraph zero
         --bindall
@@ -41,7 +44,7 @@ services:
     working_dir: /data/zero
 
   alpha:
-    image: dgraph/dgraph:v20.03.1
+    image: doraboateng/graph:latest
     command: >-
       dgraph alpha
         --block_rate 10
@@ -55,6 +58,8 @@ services:
         --zero=zero:5080
     depends_on:
       - zero
+    ports:
+      - "8080:8080"
     volumes:
       - dgraph_vol:/dgraph:delegated
     working_dir: /data/alpha

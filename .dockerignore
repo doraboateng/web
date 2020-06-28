@@ -9,6 +9,7 @@ tmp/
 .codeclimate.yml
 .devcontainer.json
 .docker-hub-token
+.docker-hub-username
 .dockerignore
 .editorconfig
 .env.*

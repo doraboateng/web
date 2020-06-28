@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 1px 5px;
   }
 
+  input {
+    border-radius: 0;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: inherit;
     font-weight: 500;

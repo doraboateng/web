@@ -2,11 +2,10 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import fetch from 'node-fetch';
 
+import Page from '../../language/Page';
 import { LanguagePageProps } from '../../language/types';
 
-const LanguagePage = ({ code, name }: LanguagePageProps) => (
-  <div>{`Language page for "${name}" (${code})`}</div>
-);
+const LanguagePage = (props: LanguagePageProps) => <Page {...props} />;
 
 export default LanguagePage;
 

@@ -5,7 +5,7 @@
 
 Dora Boateng: A reference of cultures past and present.
 
->TODO: quick mission and intro
+>Preserving and promoting our languages and heritage.
 
 _Looking to contribute? Read our [contribution notes here](https://github.com/kwcay/boateng-web/blob/stable/docs/contributing.md)._
 
@@ -15,7 +15,8 @@ _Looking to contribute? Read our [contribution notes here](https://github.com/kw
 - [Local setup](#local-setup)
     - [Requirements](#requirements)
     - [Running the app locally](#running-the-app-locally)
-    - [Useful commands](#useful-commands)
+    - [Importing sample data](#importing-sample-data)
+    - [Other useful commands](#other-useful-commands)
 - [Reporting Bugs](#reporting-bugs)
 - [Reporting Security Issues](#reporting-security-issues)
 - [Contributing](https://github.com/kwcay/boateng-web/blob/stable/docs/contributing.md)
@@ -40,7 +41,24 @@ _Looking to contribute? Read our [contribution notes here](https://github.com/kw
 ## Running the app locally
 
 ```shell
+# If you don't have a .env file, create it.
+cp .env.sample .env
+
+# Start the app.
 docker-compose up --detach
+
+# Make sure the latest schema is loaded.
+# TODO: use the graph utils CLI.
+curl localhost:8080/admin/schema --data-binary "@../graph/src/schema/graph.gql" \
+    && curl localhost:8080/alter --data-binary "@../graph/src/schema/indices.dgraph"
+
+# Load sample data.
+docker cp sample/rdf.gz boateng_web_alpha_1:/tmp/rdf.gz
+docker-compose exec alpha dgraph live \
+    --alpha 127.0.0.1:9080 \
+    --files /tmp/rdf.gz \
+    --format rdf \
+    --zero zero:5080
 ```
 
 The app will be available at the URL: http://localhost:3300
@@ -63,7 +81,7 @@ docker-compose down
 # Tail the last 5 lines from the logs.
 docker-compose logs --tail 5 web
 
-# Follow the logs as they come in (CMD+C/CTRL+C to exit).
+# Follow the logs as they come in (CMD+C or CTRL+C to exit).
 docker-compose logs --follow web
 
 # Launch a shell into the web contatiner.

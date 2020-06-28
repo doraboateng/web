@@ -27,6 +27,7 @@
     "color": "~3.1.2",
     "next": "~9.3.6",
     "node-fetch": "^v3.0.0-beta.5",
+    "normalize.css": "^8.0.1",
     "react": "~16.13",
     "react-dom": "~16.13",
     "styled-components": "~5.1",
