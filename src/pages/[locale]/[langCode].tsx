@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 
 import Page from '../../language/Page';
 import { LanguagePageProps } from '../../language/types';
+import logger from '../../utils/logger';
 
 const LanguagePage = (props: LanguagePageProps) => <Page {...props} />;
 
@@ -11,7 +12,7 @@ export default LanguagePage;
 
 const query = `
   query ($code: String!) {
-    language (code: $code) {
+    queryLanguage (filter: { code: { eq: $code } }) {
       code
       names {
         value
@@ -22,7 +23,8 @@ const query = `
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const variables = { code: params.langCode };
-  const apiHost = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8800';
+  // const apiHost = process.env.NEXT_PUBLIC_INTERNAL_GRAPH;
+  const apiHost = 'https://graph.doraboateng.com';
   const response = await fetch(`${apiHost}/graphql`, {
     method: 'POST',
     headers: {
@@ -32,9 +34,20 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     body: JSON.stringify({ query, variables }),
   });
 
-  const { data: { language } } = await response.json();
-  const name = language && language.names.length
-    ? language.names[0].value
+  if (response.status !== 200) {
+    // TODO
+  }
+
+  const body = await response.json();
+
+  if ('errors' in body) {
+    body.errors.forEach(error => logger.error(error.message));
+    body.errors.forEach(error => console.log(error.message, error.locations));
+  }
+
+  const { data: { queryLanguage: results } } = body;
+  const name = results && results[0].names.length
+    ? results[0].names[0].value
     : params.langCode;
 
   return {

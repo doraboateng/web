@@ -8,8 +8,11 @@ export const fetchGraphQL = (
   query: string,
   vars?: object | string,
 ) => {
-  const host = process.env.NEXT_PUBLIC_API_URL || 'https://api.doraboateng.com';
+  // const host = process.env.NEXT_PUBLIC_EXTERNAL_API;
+  const host = 'https://api.doraboateng.com';
   const variables = typeof vars === 'string' ? JSON.parse(vars) : vars;
+
+  console.log('fetchGraphQL', host, variables);
 
   return fetch(`${host}/graphql`, {
     body: JSON.stringify({ query, variables }),
@@ -25,12 +28,15 @@ export const useGraphQL = (
   query: string,
   variables?: object,
 ) => {
+  console.log('useGraphQL');
   const [result, setResult] = useState(null);
   const {
     data: response,
     error,
     isValidating,
   } = useSWR([query, JSON.stringify(variables)], fetchGraphQL);
+
+  console.log('useGraphQL response', response, error, isValidating);
 
   if (error) {
     logger.warning(`useSWR error in useGrapQL: ${error}`);
