@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import fetch from 'unfetch';
+import fetch from 'node-fetch';
 
 import logger from './logger';
 
@@ -8,11 +8,8 @@ export const fetchGraphQL = (
   query: string,
   vars?: object | string,
 ) => {
-  // const host = process.env.NEXT_PUBLIC_EXTERNAL_API;
-  const host = 'https://api.doraboateng.com';
+  const host = 'https://graph.doraboateng.com';
   const variables = typeof vars === 'string' ? JSON.parse(vars) : vars;
-
-  console.log('fetchGraphQL', host, variables);
 
   return fetch(`${host}/graphql`, {
     body: JSON.stringify({ query, variables }),

@@ -10,9 +10,10 @@ interface SearchSectionProps {
 }
 
 const SearchSection = (props: SearchSectionProps) => (
-  <HeroImage filmOpacity={0.6} height="35vh" justify="flex-start">
+  <HeroImage filmOpacity={0.6} height="45vh" justify="flex-start">
     <HeroInner>
-      <Tagline>{props.name}</Tagline>
+      <Tagline size="large">{props.name}</Tagline>
+      <Tagline>Lookup words, proverbs and concepts.</Tagline>
 
       <FormWrapper>
         <SearchForm />

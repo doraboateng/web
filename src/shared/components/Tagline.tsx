@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
 interface Props {
+  size?: 'normal' | 'large';
   textAlign?: string;
   width?: string;
 }
 
 const Tagline = styled.div<Props>`
-  font-size: 1.4rem;
+  font-size: ${props => (props.size === 'large' ? '2rem' : '1.4rem')};
   text-align: center;
 
   @media(min-width: ${props => props.theme.mediaQueryMedium}) {
-    font-size: 2rem;
+    font-size: ${props => (props.size === 'large' ? '2.8rem' : '2rem')};;
     text-align: ${props => props.textAlign};
     width: ${props => props.width};
   }
@@ -21,6 +22,7 @@ const Tagline = styled.div<Props>`
 `;
 
 Tagline.defaultProps = {
+  size: 'normal',
   textAlign: 'left',
   width: '700px',
 };

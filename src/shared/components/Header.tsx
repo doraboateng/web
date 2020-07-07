@@ -1,9 +1,12 @@
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
 const Header = () => (
   <Wrapper>
-    <Logo>Dora Boateng</Logo>
+    <Link href="/">
+      <Logo>Dora Boateng</Logo>
+    </Link>
 
     <span style={{ color: 'transparent' }}>Menu</span>
   </Wrapper>
@@ -26,6 +29,8 @@ const Wrapper = styled.header`
   }
 `;
 
-const Logo = styled.div``;
+const Logo = styled.div`
+  cursor: pointer;
+`;
 
 export default Header;
