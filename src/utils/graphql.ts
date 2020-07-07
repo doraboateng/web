@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import fetch from 'unfetch';
+import fetch from 'node-fetch';
 
 import logger from './logger';
 
@@ -8,7 +8,7 @@ export const fetchGraphQL = (
   query: string,
   vars?: object | string,
 ) => {
-  const host = process.env.NEXT_PUBLIC_API_URL || 'https://api.doraboateng.com';
+  const host = 'https://graph.doraboateng.com';
   const variables = typeof vars === 'string' ? JSON.parse(vars) : vars;
 
   return fetch(`${host}/graphql`, {
@@ -25,12 +25,15 @@ export const useGraphQL = (
   query: string,
   variables?: object,
 ) => {
+  console.log('useGraphQL');
   const [result, setResult] = useState(null);
   const {
     data: response,
     error,
     isValidating,
   } = useSWR([query, JSON.stringify(variables)], fetchGraphQL);
+
+  console.log('useGraphQL response', response, error, isValidating);
 
   if (error) {
     logger.warning(`useSWR error in useGrapQL: ${error}`);

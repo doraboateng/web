@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Tagline from './Tagline';
-import { Hero } from '../../shared';
+import { Hero, Tagline } from '../../shared';
 
 const SearchSection = () => (
   <Hero height="40vh" justify="flex-start">

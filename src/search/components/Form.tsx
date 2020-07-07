@@ -82,14 +82,7 @@ const SearchForm = (props: FormProps) => {
 type SupportComponentProps = StyledProps<FormProps & {isActive: boolean}>;
 
 const Wrapper = styled.div<{isActive: boolean}>`
-  background: ${props => `
-    linear-gradient(
-     45deg,
-      ${props.theme.purple.mix(props.theme.amber).string()}, 0.8%,
-      ${props.theme.amber.string()} 20%, 99.2%,
-      ${props.theme.purple.mix(props.theme.amber).string()}
-    )
-  `};
+  background-color: ${props => props.theme.amber.string()};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 0 30px -10px black;
   box-sizing: border-box;

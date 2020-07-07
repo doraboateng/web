@@ -13,3 +13,4 @@ export {
 export { default as HeroImage } from './components/HeroImage';
 export { default as Overlay } from './components/Overlay';
 export { default as Section } from './components/Section';
+export { default as Tagline } from './components/Tagline';

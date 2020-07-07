@@ -18,6 +18,23 @@ const GlobalStyle = createGlobalStyle`
     line-height: ${props => props.theme.lineHeight};
   }
 
+  em {
+    background-color: ${props => props.theme.white.fade(0.9).string()};
+    border-radius: ${props => props.theme.borderRadius};
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: normal;
+    padding: 1px 5px;
+  }
+
+  input {
+    border-radius: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: inherit;
     font-weight: 500;

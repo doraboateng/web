@@ -76,14 +76,6 @@ const Hero = styled.div<HeroProps>`
   display: flex;
   flex-direction: column;
   justify-content: ${props => props.justify || 'center'};
-
-  em {
-    background-color: ${props => getColor(props).fade(0.9).string()};
-    border-radius: ${props => props.theme.borderRadius};
-    font-style: normal;
-    font-weight: ${props => props.theme.fontWeightBold};
-    padding: 1px 5px;
-  }
 `;
 
 export default Hero;

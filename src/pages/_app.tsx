@@ -2,6 +2,7 @@ import App, { AppContext } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import 'normalize.css';
 
 import theme from '../theme';
 import bootstrap from '../utils/bootstrap';

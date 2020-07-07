@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import { SearchForm } from '../../search';
 import { HeroImage, Section, Tagline } from '../../shared';
 
-const SearchSection = () => (
+interface SearchSectionProps {
+  code: string;
+  name: string;
+}
+
+const SearchSection = (props: SearchSectionProps) => (
   <HeroImage filmOpacity={0.6} height="45vh" justify="flex-start">
     <HeroInner>
-      <Tagline>
-        A Reference of Cultures<br />
-        Past and Present.
-      </Tagline>
+      <Tagline size="large">{props.name}</Tagline>
+      <Tagline>Lookup words, proverbs and concepts.</Tagline>
 
       <FormWrapper>
         <SearchForm />

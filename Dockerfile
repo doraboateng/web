@@ -5,11 +5,6 @@ FROM node:${NODE_VERSION}-alpine3.11 AS base
 
 WORKDIR /boateng-web
 
-# Development stage.
-FROM base AS dev
-
-# TODO: install dev tools
-
 # Build stage.
 FROM base as build
 
@@ -38,5 +33,10 @@ COPY --chown=node:node --from=build /boateng-web/package.json /boateng-web/
 
 USER node
 
-ENV APP_PORT 3300
-ENTRYPOINT ["ash", "-c", "yarn start --port $APP_PORT"]
+ENV PORT 3300
+ENTRYPOINT ["ash", "-c", "yarn start --port $PORT"]
+
+# Development stage.
+FROM base AS dev
+
+# TODO: install dev tools

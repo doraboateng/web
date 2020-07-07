@@ -1,18 +1,17 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import fetch from 'node-fetch';
 
+import Page from '../../language/Page';
 import { LanguagePageProps } from '../../language/types';
+import { fetchGraphQL, logger } from '../../utils';
 
-const LanguagePage = ({ code, name }: LanguagePageProps) => (
-  <div>{`Language page for "${name}" (${code})`}</div>
-);
+const LanguagePage = (props: LanguagePageProps) => <Page {...props} />;
 
 export default LanguagePage;
 
 const query = `
   query ($code: String!) {
-    language (code: $code) {
+    getLanguage (code: $code) {
       code
       names {
         value
@@ -22,21 +21,22 @@ const query = `
 `;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const variables = { code: params.langCode };
-  const apiHost = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8800';
-  const response = await fetch(`${apiHost}/graphql`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({ query, variables }),
-  });
+  const response = await fetchGraphQL(query, { code: params.langCode });
+  const body = await response.json();
 
-  const { data: { language } } = await response.json();
-  const name = language && language.names.length
-    ? language.names[0].value
-    : params.langCode;
+  if ('errors' in body) {
+    body.errors.forEach(error => logger.error(
+      `GraphQL error (${response.status}): ${error.message}`,
+    ));
+
+    return { props: { errorCode: 500 } };
+  }
+
+  if (!body.data.getLanguage) {
+    return { props: { errorCode: 404 } };
+  }
+
+  const name = body.data.getLanguage.names[0].value;
 
   return {
     props: {

@@ -5,7 +5,7 @@
 
 Dora Boateng: A reference of cultures past and present.
 
->TODO: quick mission and intro
+>Preserving and promoting our languages and heritage.
 
 _Looking to contribute? Read our [contribution notes here](https://github.com/kwcay/boateng-web/blob/stable/docs/contributing.md)._
 
@@ -15,7 +15,6 @@ _Looking to contribute? Read our [contribution notes here](https://github.com/kw
 - [Local setup](#local-setup)
     - [Requirements](#requirements)
     - [Running the app locally](#running-the-app-locally)
-    - [Useful commands](#useful-commands)
 - [Reporting Bugs](#reporting-bugs)
 - [Reporting Security Issues](#reporting-security-issues)
 - [Contributing](https://github.com/kwcay/boateng-web/blob/stable/docs/contributing.md)
@@ -27,51 +26,16 @@ _Looking to contribute? Read our [contribution notes here](https://github.com/kw
 
 ## Requirements
 
-- [Docker](https://www.docker.com) & [Docker Compose](https://docs.docker.com/compose/install)
-- [Visual Studio Code](https://code.visualstudio.com)
-- A POSIX-compliant terminal, such as: [Visual Studio Code terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), [cmder](https://cmder.net), [Cygwin](https://www.cygwin.com), [Bash](https://www.gnu.org/software/bash), [Zsh](https://www.zsh.org), or [others](https://alternativeto.net/software/zsh).
-
->Note: If you're on Linux or Mac, you already have a POSIX-compliant terminal.
-
-### Optional, but recommended:
-
-- [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements)
+- [Node](https://nodejs.org)
+- [Yarn](https://yarnpkg.com)
 
 ## Running the app locally
 
 ```shell
-docker-compose up --detach
+yarn dev
 ```
 
-The app will be available at the URL: http://localhost:3300
-
-To stop the app:
-
-```shell
-docker-compose stop
-```
-
-To stop the app and remove all containers:
-
-```shell
-docker-compose down
-```
-
-## Other useful commands
-
-```shell
-# Tail the last 5 lines from the logs.
-docker-compose logs --tail 5 web
-
-# Follow the logs as they come in (CMD+C/CTRL+C to exit).
-docker-compose logs --follow web
-
-# Launch a shell into the web contatiner.
-docker-compose exec web ash
-
-# Update dependencies.
-docker-compose exec web yarn upgrade
-```
+The app will be available at the URL: http://localhost:3000
 
 # Reporting bugs
 
