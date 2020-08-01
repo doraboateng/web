@@ -1,3 +1,4 @@
+[![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 [![Build Status](https://travis-ci.com/kwcay/boateng-web.svg?branch=stable)](https://travis-ci.com/kwcay/boateng-web)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability-percentage/kwcay/boateng-web)](https://codeclimate.com/github/kwcay/boateng-web/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5b07645aa53a13f4aa9e/test_coverage)](https://codeclimate.com/github/kwcay/boateng-web/test_coverage)
@@ -9,7 +10,7 @@ _Looking to add or update content? Shoot us an email at dora@kwcay.co._
 
 _Looking to contribute to our source code? Read our [contribution notes here](docs/contributing.md)._
 
-# Table of contents
+## Table of contents
 
 - [Setting up your local environment](#setting-up-your-local-environment)
 - [Reporting Bugs](#reporting-bugs)
@@ -18,7 +19,7 @@ _Looking to contribute to our source code? Read our [contribution notes here](do
 - [Creating a release](https://github.com/kwcay/boateng-web/blob/stable/docs/releasing.md)
 - [License](#license)
 
-# Setting up your local environment
+## Setting up your local environment
 
 <details>
     <summary>Software requirements</summary>
@@ -51,24 +52,24 @@ yarn dev
 
 The app will be available at the URL: http://localhost:3000
 
-# Reporting bugs
+## Reporting bugs
 
 >TODO
 
-# Reporting security issues
+## Reporting security issues
 
 >TODO
 
-# Contributing
+## Contributing
 
 Read our [contribution notes here](docs/contributing.md)
 
-# Creating a release
+## Creating a release
 
 Read our [releasing notes here](docs/releasing.md)
 
-# License
+## License
 
-[GNU General Public License v3](https://github.com/kwcay/boateng-web/blob/stable/LICENSE)
+[GNU General Public License v3](LICENSE)
 
 [Copyright &copy; Kwahu &amp; Cayes](https://kwcay.co)
