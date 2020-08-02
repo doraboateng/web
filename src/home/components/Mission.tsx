@@ -50,8 +50,6 @@ const SearchSection = () => {
 const MissionHero = styled(Hero)`
   align-items: center;
   height: auto;
-  padding-top: 50px;
-  padding-bottom: 20px;
 
   @media(min-width: ${props => props.theme.mediaQueryLarge}) {
     flex-direction: row;

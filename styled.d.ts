@@ -9,6 +9,8 @@ declare module 'styled-components' {
     white: Color;
 
     primaryColor: Color;
+    primaryColorLight: Color;
+    secondaryColor: Color;
     accentColor: Color;
     textColor: Color;
 

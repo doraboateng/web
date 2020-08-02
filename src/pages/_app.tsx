@@ -4,7 +4,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import 'normalize.css';
 
-import theme from '../theme';
+import theme from '../shared/theme';
 import bootstrap from '../utils/bootstrap';
 import GlobalStyle from '../shared/components/GlobalStyle';
 import { getLocale, getLocalizedUrl } from '../utils/locale';
