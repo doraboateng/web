@@ -1,5 +1,7 @@
 plugins:
-  eslint:
+  editorconfig:
     enabled: true
   markdownlint:
+    enabled: true
+  nodesecurity:
     enabled: true
