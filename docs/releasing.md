@@ -6,8 +6,7 @@
 1. Make sure all tests pass:
 
 ```shell
-docker-compose restart
-docker-compose exec web yarn qa
+yarn qa
 ```
 
 2. Update the version number in `package.json`, commit the change and push it up to Github.

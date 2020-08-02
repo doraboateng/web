@@ -1,6 +1,4 @@
 plugins:
-  editorconfig:
-    enabled: true
   markdownlint:
     enabled: true
   nodesecurity:
