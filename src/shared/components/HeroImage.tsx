@@ -7,6 +7,8 @@ interface HeroImageProps extends HeroProps {
   children: React.ReactNode;
   image?: string;
   filmOpacity?: number;
+  justify?: string;
+  padding?: string;
 }
 
 const HeroImage = (props: HeroImageProps) => {
@@ -21,6 +23,15 @@ const HeroImage = (props: HeroImageProps) => {
   );
 };
 
+HeroImage.defaultProps = {
+  image: null,
+  filmOpacity: null,
+  justify: null,
+  padding: null,
+};
+
+export default HeroImage;
+
 const Film = styled.div<{justify?: string, opacity?: number, padding?: string}>`
   background-color: rgba(0, 0, 0, ${props => props.opacity || 0.5});
   box-sizing: border-box;
@@ -32,5 +43,3 @@ const Film = styled.div<{justify?: string, opacity?: number, padding?: string}>`
   flex-direction: column;
   justify-content: ${props => props.justify || 'center'};
 `;
-
-export default HeroImage;

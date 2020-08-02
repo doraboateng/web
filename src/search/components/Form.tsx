@@ -79,6 +79,13 @@ const SearchForm = (props: FormProps) => {
   );
 };
 
+SearchForm.defaultProps = {
+  placeholder: null,
+  textColor: null,
+};
+
+export default SearchForm;
+
 type SupportComponentProps = StyledProps<FormProps & {isActive: boolean}>;
 
 const Wrapper = styled.div<{isActive: boolean}>`
@@ -145,5 +152,3 @@ const Input = styled.input<SupportComponentProps>`
     color: ${props => getColor(props)};
   }
 `;
-
-export default SearchForm;
