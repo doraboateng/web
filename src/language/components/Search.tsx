@@ -5,7 +5,7 @@ import { SearchForm } from '../../search';
 import { HeroImage, Section, Tagline } from '../../shared';
 
 interface SearchSectionProps {
-  code: string;
+  code: string; // eslint-disable-line react/no-unused-prop-types
   name: string;
 }
 

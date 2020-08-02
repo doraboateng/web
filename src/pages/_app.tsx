@@ -61,7 +61,6 @@ export default class BoatengApp extends App<{err: any}> {
             title={title}
           />
 
-
           {/* <link rel="canonical" href="https://www.doraboateng.com/en" /> */}
         </Head>
         <GlobalStyle />

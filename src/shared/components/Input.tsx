@@ -53,9 +53,14 @@ const Input = (props: Props) => {
 };
 
 Input.defaultProps = {
+  icon: null,
   padding: '1em',
+  placeholder: null,
+  textColor: null,
   type: 'text',
 };
+
+export default Input;
 
 interface WrapperProps {
   isActive: boolean;
@@ -122,5 +127,3 @@ const TextInput = styled.input<TextInputProps>`
     color: ${props => getColor(props)};
   }
 `;
-
-export default Input;
