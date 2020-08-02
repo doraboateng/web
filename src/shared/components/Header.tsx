@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Header = () => (
   <Wrapper>
     <Link href="/">
-      <Logo>Dora Boateng</Logo>
+      <Logo> </Logo>
     </Link>
 
     <span style={{ color: 'transparent' }}>Menu</span>

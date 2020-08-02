@@ -89,9 +89,9 @@ export default SearchForm;
 type SupportComponentProps = StyledProps<FormProps & {isActive: boolean}>;
 
 const Wrapper = styled.div<{isActive: boolean}>`
-  background-color: ${props => props.theme.amber.string()};
+  background-color: ${props => props.theme.accentColor.string()};
   border-radius: ${props => props.theme.borderRadius};
-  box-shadow: 0 0 30px -10px black;
+  box-shadow: 0 0 40px -10px black;
   box-sizing: border-box;
   color: ${props => props.theme.textColor.string()};
   padding: 1rem;
@@ -105,7 +105,7 @@ const Wrapper = styled.div<{isActive: boolean}>`
 
 const Form = styled.form<{isActive: boolean}>`
   background-color: ${props => (props.isActive
-    ? props.theme.white.fade(0.4).string()
+    ? props.theme.white.fade(0.7).string()
     : 'transparent')};
   border-radius: ${props => props.theme.borderRadius};
   display: flex;
@@ -128,11 +128,13 @@ const IconButton = styled.button<SupportComponentProps>`
 
 const SearchButton = styled(IconButton)`
   border-bottom-left-radius: ${props => props.theme.borderRadius};
+  color: ${props => props.theme.white.string()};
   padding: .6rem .2rem .6rem 1rem;
 `;
 
 const ClearButton = styled(IconButton)`
   border-bottom-right-radius: ${props => props.theme.borderRadius};
+  color: ${props => props.theme.white.string()};
   padding: .6rem 1rem .6rem .2rem;
 `;
 

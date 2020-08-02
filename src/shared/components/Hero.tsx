@@ -25,6 +25,8 @@ type StyledHeroProps = StyledProps<HeroProps>;
 
 const heroImg = '/assets/images/bg/2d367c83ace8e17b5d262944c7044aee.jpg';
 
+const bgGradientDelta = 0.0;
+
 const getBackground = ({ styling, theme }: StyledHeroProps): string => {
   switch (styling) {
     case HERO_IMAGE:
@@ -33,19 +35,19 @@ const getBackground = ({ styling, theme }: StyledHeroProps): string => {
     case HERO_AMBER:
       return `linear-gradient(
         ${theme.amber.string()},
-        ${theme.amber.darken(0.3).string()}
+        ${theme.amber.darken(bgGradientDelta).string()}
       )`;
 
     case HERO_GREEN:
       return `linear-gradient(
         ${theme.green.string()},
-        ${theme.green.darken(0.3).string()}
+        ${theme.green.darken(bgGradientDelta).string()}
       )`;
 
     case HERO_PURPLE:
       return `linear-gradient(
         ${theme.purple.string()},
-        ${theme.purple.darken(0.3).string()}
+        ${theme.purple.darken(bgGradientDelta).string()}
       )`;
 
     default:

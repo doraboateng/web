@@ -8,7 +8,9 @@ const theme: DefaultTheme = {
   white: Color('#FFF'),
 
   primaryColor: Color('#009688'),
-  accentColor: Color('#ffc107'),
+  primaryColorLight: Color('#EDFBC1'),
+  secondaryColor: Color('#FFC107'),
+  accentColor: Color('#8F3988'),
   textColor: Color('#333'),
 
   fontFamily: '"Crimson Text", sans-serif',
