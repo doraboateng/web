@@ -44,7 +44,7 @@ const Results = ({ query }: Props) => {
         return (
           <Result key={resourceId}>
             <Link {...linkProps}>
-              <a>{title}</a>
+              <a href={linkProps.as}>{title}</a>
             </Link>
           </Result>
         );
