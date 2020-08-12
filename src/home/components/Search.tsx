@@ -5,22 +5,22 @@ import { SearchForm } from '../../search';
 import { HeroImage, Section, Tagline, theme } from '../../shared';
 
 const SearchSection = () => (
-  <HeroImage filmOpacity={0.3} height="45vh" justify="flex-start">
+  <HeroImage filmOpacity={0.3} height="60vh" justify="flex-start">
     <HeroInner>
-      <Tagline>
-        <TaglineSpan>
+      <Title>
+        <em>
           A Reference of Cultures
-        </TaglineSpan>
-      </Tagline>
+        </em>
+      </Title>
 
-      <Tagline>
-        <TaglineSpan>
+      <Title>
+        <em>
           Past and Present.
-        </TaglineSpan>
-      </Tagline>
+        </em>
+      </Title>
 
       <FormWrapper>
-        <SearchForm textColor={theme.white} />
+        <SearchForm backgroundColor={theme.amber.lighten(0.7)} />
       </FormWrapper>
     </HeroInner>
   </HeroImage>
@@ -37,8 +37,10 @@ const HeroInner = styled.div`
   }
 `;
 
-const TaglineSpan = styled.span`
-  background: ${props => props.theme.textColor.fade(0.4).string()};
+const Title = styled(Tagline)`
+  em {
+    background-color: ${props => props.theme.textColor.fade(0.4).string()};
+  }
 `;
 
 const FormWrapper = styled(Section)`

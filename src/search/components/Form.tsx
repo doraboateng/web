@@ -5,8 +5,10 @@ import styled, { StyledProps } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Results from './Results';
+import { theme } from '../../shared';
 
 interface FormProps {
+  backgroundColor?: Color;
   placeholder?: string;
   textColor?: Color;
 }
@@ -50,7 +52,7 @@ const SearchForm = (props: FormProps) => {
   };
 
   return (
-    <Wrapper isActive={isActive}>
+    <Wrapper backgroundColor={props.backgroundColor} isActive={isActive}>
       <Form isActive={isActive} onSubmit={handleSubmit} noValidate>
         <SearchButton {...props} isActive={isActive} onClick={handleSubmit}>
           <FontAwesomeIcon icon="search" />
@@ -74,22 +76,23 @@ const SearchForm = (props: FormProps) => {
         )}
       </Form>
 
-      <Results query={searchQuery} visible={showResults} />
+      {showResults && <Results query={searchQuery} />}
     </Wrapper>
   );
 };
 
 SearchForm.defaultProps = {
+  backgroundColor: null,
   placeholder: null,
-  textColor: null,
+  textColor: theme.textColor,
 };
 
 export default SearchForm;
 
 type SupportComponentProps = StyledProps<FormProps & {isActive: boolean}>;
 
-const Wrapper = styled.div<{isActive: boolean}>`
-  background-color: ${props => props.theme.accentColor.string()};
+const Wrapper = styled.div<{backgroundColor?: Color, isActive: boolean}>`
+  background-color: ${props => (props.backgroundColor || props.theme.accentColor).string()};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 0 40px -10px black;
   box-sizing: border-box;
@@ -128,13 +131,13 @@ const IconButton = styled.button<SupportComponentProps>`
 
 const SearchButton = styled(IconButton)`
   border-bottom-left-radius: ${props => props.theme.borderRadius};
-  color: ${props => props.theme.white.string()};
+  color: ${props => getColor(props)};
   padding: .6rem .2rem .6rem 1rem;
 `;
 
 const ClearButton = styled(IconButton)`
   border-bottom-right-radius: ${props => props.theme.borderRadius};
-  color: ${props => props.theme.white.string()};
+  color: ${props => getColor(props)};
   padding: .6rem 1rem .6rem .2rem;
 `;
 

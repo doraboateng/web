@@ -3,43 +3,28 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-import { useGraphQL } from '../../utils/graphql';
+import { useSearch } from '../../utils/network';
 
 interface Props {
   query: string;
-  visible: boolean;
 }
 
-const graphQuery = `
-  query ($terms: String!) {
-    search(query: $terms) {
-      type
-      title
-      resourceId
-    }
-  }
-`;
-
-const Results = ({ query, visible }: Props) => {
-  const { isLoading, result } = useGraphQL(graphQuery, { terms: query });
+const Results = ({ query }: Props) => {
+  const { isLoading, results } = useSearch(query);
   const router = useRouter();
   const { locale } = router.query;
-
-  if (!visible) {
-    return null;
-  }
 
   if (isLoading) {
     return <Wrapper>...</Wrapper>;
   }
 
-  if (!result || result.search.length < 1) {
+  if (!results) {
     return <Wrapper>Could not find any results for {query}.</Wrapper>;
   }
 
   return (
     <Wrapper>
-      {result.search.map(({ resourceId, title, type }) => {
+      {results.map(({ resourceId, title, type }) => {
         const linkProps = {
           href: '/',
           as: '/',
@@ -59,7 +44,7 @@ const Results = ({ query, visible }: Props) => {
         return (
           <Result key={resourceId}>
             <Link {...linkProps}>
-              {title}
+              <a>{title}</a>
             </Link>
           </Result>
         );

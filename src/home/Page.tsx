@@ -1,8 +1,8 @@
 import React from 'react';
 
 import AppPromo from './components/AppPromo';
-import Latest from './components/Latest';
-import Mission from './components/Mission';
+import Latest from './components/Mission';
+import Mission from './components/MissionBak';
 import Search from './components/Search';
 import { Footer, Header } from '../shared';
 

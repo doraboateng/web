@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {
-  HERO_AMBER,
+  HERO_GREEN,
 
   Hero,
   Input,
   Tagline,
 } from '../../shared';
 
-const MissionSection = () => {
+const SearchSection = () => {
   const onSubmit = () => {
     window.open(
       'https://tinyletter.com/doraboateng',
@@ -19,15 +19,12 @@ const MissionSection = () => {
   };
 
   return (
-    <MissionHero justify="flex-start" styling={HERO_AMBER}>
-      <Message textAlign="center" width="auto">
-        <span>
+    <MissionHero justify="flex-start" styling={HERO_GREEN}>
+      <Message width="auto">
+        <MessageSize>
           Learn about <em>Indigenous</em> and <em>African</em> heritage.
-        </span>
-
-        <span>
           Help <em>preserve</em> and <em>promote</em> our languages and cultures.
-        </span>
+        </MessageSize>
       </Message>
 
       <FormWrapper>
@@ -54,25 +51,32 @@ const MissionHero = styled(Hero)`
   align-items: center;
   height: auto;
 
-  em {
-    background-color: ${props => props.theme.white.fade(0.3).string()};
-  }
-
   @media(min-width: ${props => props.theme.mediaQueryLarge}) {
-    // flex-direction: row;
-    // height: 40vh;
+    flex-direction: row;
+    height: 40vh;
   }
 `;
 
 const Message = styled(Tagline)`
-  height: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-grow: 1;
 
-  span {
-    margin: 12px 0;
+  @media(min-width: ${props => props.theme.mediaQueryMedium}) {
+    text-align: center;
   }
+
+  @media(min-width: ${props => props.theme.mediaQueryLarge}) {
+    max-width: 50vw;
+    text-align: right;
+  }
+
+  @media(min-width: ${props => props.theme.mediaQueryExtraLarge}) {
+    margin: auto;
+  }
+`;
+
+const MessageSize = styled.div`
+  margin: auto;
+  max-width: 750px;
 `;
 
 const FormWrapper = styled.div`
@@ -89,4 +93,4 @@ const Form = styled.form`
   width: 360px;
 `;
 
-export default MissionSection;
+export default SearchSection;
