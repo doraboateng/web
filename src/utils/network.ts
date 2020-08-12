@@ -5,13 +5,15 @@ import fetch, { Response } from 'cross-fetch';
 
 import logger from './logger';
 
-const apiEndpoint = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:8800'
-  : 'https://api.doraboateng.com';
+// const apiEndpoint = process.env.NODE_ENV === 'development'
+//   ? 'http://localhost:8800'
+//   : 'https://api.doraboateng.com';
+const apiEndpoint = 'https://api.doraboateng.com';
 
-const graphEndpoint = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:8080'
-  : 'https://graph.doraboateng.com';
+// const graphEndpoint = process.env.NODE_ENV === 'development'
+//   ? 'http://localhost:8080'
+//   : 'https://graph.doraboateng.com';
+const graphEndpoint = 'https://graph.doraboateng.com';
 
 export const fetchGraphQL = async (
   query: string,
