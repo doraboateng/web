@@ -11,9 +11,9 @@ yarn qa
 
 2. Update the version number in `package.json`, commit the change and push it up to Github.
 
-3. Create release on [Github](https://github.com/kwcay/boateng-web/releases/new?target=stable).
+3. Create release on [Github](https://github.com/doraboateng/web/releases/new?target=stable).
 
-Follow [this link](https://github.com/kwcay/boateng-web/releases) to view the latest releases.
+Follow [this link](https://github.com/doraboateng/web/releases) to view the latest releases.
 
 4. Publish the release to Docker Hub:
 
@@ -40,5 +40,5 @@ cat ./.docker-hub-token \
     && docker push doraboateng/web:latest
 ```
 
-- [Github releases](https://github.com/kwcay/boateng-web/releases)
+- [Github releases](https://github.com/doraboateng/web/releases)
 - [Docker Hub releases](https://hub.docker.com/r/doraboateng/web/tags)

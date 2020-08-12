@@ -56,11 +56,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kwcay/boateng-web.git"
+    "url": "git+https://github.com/doraboateng/web.git"
   },
   "bugs": {
-    "url": "https://github.com/kwcay/boateng-web/issues"
+    "url": "https://github.com/doraboateng/web/issues"
   },
-  "homepage": "https://github.com/kwcay/boateng-web#readme",
+  "homepage": "https://github.com/doraboateng/web#readme",
   "license": "GPL-3.0-only"
 }

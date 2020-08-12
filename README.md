@@ -1,8 +1,8 @@
 [![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
-[![Build Status](https://travis-ci.com/kwcay/boateng-web.svg?branch=stable)](https://travis-ci.com/kwcay/boateng-web)
-[![Maintainability](https://img.shields.io/codeclimate/maintainability-percentage/kwcay/boateng-web)](https://codeclimate.com/github/kwcay/boateng-web/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/5b07645aa53a13f4aa9e/test_coverage)](https://codeclimate.com/github/kwcay/boateng-web/test_coverage)
-![GitHub release](https://img.shields.io/github/v/release/kwcay/boateng-web)
+[![Build Status](https://travis-ci.com/doraboateng/web.svg?branch=stable)](https://travis-ci.com/doraboateng/web)
+[![Maintainability](https://img.shields.io/codeclimate/maintainability-percentage/doraboateng/web)](https://codeclimate.com/github/doraboateng/web/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7150582b4f44ad59a0b9/test_coverage)](https://codeclimate.com/github/doraboateng/web/test_coverage)
+![GitHub release](https://img.shields.io/github/v/release/doraboateng/web)
 
 Here lies the source for for [Dora Boateng](https://doraboateng.com), a free tool dedicated to preserving and promoting our languages and heritage.
 
@@ -15,8 +15,8 @@ _Looking to contribute to our source code? Read our [contribution notes here](do
 - [Setting up your local environment](#setting-up-your-local-environment)
 - [Reporting Bugs](#reporting-bugs)
 - [Reporting Security Issues](#reporting-security-issues)
-- [Contributing](https://github.com/kwcay/boateng-web/blob/stable/docs/contributing.md)
-- [Creating a release](https://github.com/kwcay/boateng-web/blob/stable/docs/releasing.md)
+- [Contributing](docs/contributing.md)
+- [Creating a release](docs/releasing.md)
 - [License](#license)
 
 ## Setting up your local environment
@@ -40,7 +40,7 @@ Once you have the required software, you can run the app locally from a terminal
 
 ```shell
 # Clone the source code locally.
-git clone git@github.com:kwcay/boateng-web.git
+git clone git@github.com:doraboateng/web.git
 cd boateng-web
 
 # Install the dependencies.
