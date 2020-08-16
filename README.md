@@ -16,7 +16,6 @@ _Looking to contribute to our source code? Read our [contribution notes here](do
 - [Reporting Bugs](#reporting-bugs)
 - [Reporting Security Issues](#reporting-security-issues)
 - [Contributing](docs/contributing.md)
-- [Creating a release](docs/releasing.md)
 - [License](#license)
 
 ## Setting up your local environment
@@ -63,10 +62,6 @@ The app will be available at the URL: http://localhost:3000
 ## Contributing
 
 Read our [contribution notes here](docs/contributing.md)
-
-## Creating a release
-
-Read our [releasing notes here](docs/releasing.md)
 
 ## License
 

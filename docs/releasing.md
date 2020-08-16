@@ -1,7 +1,6 @@
 # Creating a release
 
->TODO: create pre-releases first
->TODO: script it
+>DEPRECATED
 
 1. Make sure all tests pass:
 
