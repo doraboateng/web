@@ -31,7 +31,7 @@ export const fetchGraphQL = async (
   });
 };
 
-const useNetwork = <Data = any>(
+export const useNetwork = <Data = any>(
   key: keyInterface,
   fetcher: fetcherFn<Response>,
   handler: (any, Function) => void,
@@ -40,7 +40,7 @@ const useNetwork = <Data = any>(
   const { data: response, error, isValidating } = useSWR(key, fetcher);
 
   if (error) {
-    logger.warning(`useSearch error: ${error}`);
+    logger.warning(`useNetwork() error: ${error}`);
   }
 
   useEffect(() => {
@@ -94,6 +94,7 @@ export const useGraphQL = (
   return { isLoading: isValidating, result };
 };
 
+/** @deprecated */
 export const useSearch = (query: string) => {
   const { data, isValidating } = useNetwork(
     query,

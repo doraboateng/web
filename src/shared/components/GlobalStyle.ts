@@ -18,6 +18,17 @@ const GlobalStyle = createGlobalStyle`
     line-height: ${props => props.theme.lineHeight};
   }
 
+  a {
+    border-bottom: 2px solid ${props => props.theme.black.string()};
+    color: ${props => props.theme.black.string()};
+    text-decoration: none;
+    transition: border-bottom-width ${props => props.theme.transitionDuration};
+
+    &:hover {
+      border-bottom-width: 4px;
+    }
+  }
+
   em {
     background-color: ${props => props.theme.white.fade(0.9).string()};
     border-radius: ${props => props.theme.borderRadius};

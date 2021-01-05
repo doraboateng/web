@@ -3,6 +3,7 @@ import Color from 'color';
 
 const theme: DefaultTheme = {
   amber: Color('#FFC107'),
+  black: Color('#333'),
   green: Color('#009688'),
   purple: Color('#8F3988'),
   white: Color('#FFF'),

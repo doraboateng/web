@@ -1,29 +1,26 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
-import styled from 'styled-components';
 
-import { useSearch } from '../../utils/network';
+import useSearch from '../useSearch';
 
 interface Props {
+  locale: string;
   query: string;
 }
 
-const Results = ({ query }: Props) => {
+export default function Results({ locale, query }: Props) {
   const { isLoading, results } = useSearch(query);
-  const router = useRouter();
-  const { locale } = router.query;
 
   if (isLoading) {
-    return <Wrapper>...</Wrapper>;
+    return <div>...</div>;
   }
 
   if (!results) {
-    return <Wrapper>Could not find any results for {query}.</Wrapper>;
+    return <div>Could not find any results for {query}.</div>;
   }
 
   return (
-    <Wrapper>
+    <ul>
       {results.map(({ resourceId, title, type }) => {
         const linkProps = {
           href: '/',
@@ -42,43 +39,13 @@ const Results = ({ query }: Props) => {
         }
 
         return (
-          <Result key={resourceId}>
+          <li key={resourceId}>
             <Link {...linkProps}>
               <a href={linkProps.as}>{title}</a>
             </Link>
-          </Result>
+          </li>
         );
       })}
-    </Wrapper>
+    </ul>
   );
-};
-
-const Wrapper = styled.div`
-  background-color: ${props => props.theme.amber.lighten(0.9).string()};
-  box-shadow: 0 7px 40px -10px;
-  max-height: 300px;
-  overflow-y: scroll;
-  z-index: 1;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: .4rem 1.6rem 0;
-`;
-
-const Result = styled.div`
-  a {
-    background-color: transparent;
-    color: ${props => props.theme.textColor.string()};
-    display: block;
-    padding: 1rem;
-    text-decoration: none;
-    transition: background-color ${props => props.theme.transitionDuration};
-
-    &:hover {
-      background-color: ${props => props.theme.amber.lighten(0.7).string()};
-    }
-  }
-`;
-
-export default Results;
+}

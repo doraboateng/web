@@ -2,16 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-const Header = () => (
-  <Wrapper>
-    <Link href="/">
-      <Logo> </Logo>
-    </Link>
-
-    <span style={{ color: 'transparent' }}>Menu</span>
-  </Wrapper>
-);
-
 const Wrapper = styled.header`
   box-sizing: border-box;
   display: flex;
@@ -33,4 +23,19 @@ const Logo = styled.div`
   cursor: pointer;
 `;
 
-export default Header;
+export default function Header() {
+  return (
+    <Wrapper>
+      <Link href="/">
+        <Logo> </Logo>
+      </Link>
+
+      <span style={{ color: 'transparent' }}>Menu</span>
+    </Wrapper>
+  );
+}
+
+export const HeaderSpacer = styled.div`
+  display: block;
+  height: 5rem;
+`;

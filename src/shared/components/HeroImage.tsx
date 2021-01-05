@@ -3,35 +3,6 @@ import styled from 'styled-components';
 
 import Hero, { HeroProps, HERO_IMAGE } from './Hero';
 
-interface HeroImageProps extends HeroProps {
-  children: React.ReactNode;
-  image?: string;
-  filmOpacity?: number;
-  justify?: string;
-  padding?: string;
-}
-
-const HeroImage = (props: HeroImageProps) => {
-  const { children, image, filmOpacity, justify, padding, ...heroProps } = props;
-
-  return (
-    <Hero {...heroProps} padding="0rem" styling={HERO_IMAGE}>
-      <Film justify={justify} opacity={filmOpacity} padding={padding}>
-        {children}
-      </Film>
-    </Hero>
-  );
-};
-
-HeroImage.defaultProps = {
-  image: null,
-  filmOpacity: null,
-  justify: null,
-  padding: null,
-};
-
-export default HeroImage;
-
 const Film = styled.div<{justify?: string, opacity?: number, padding?: string}>`
   background-color: rgba(0, 0, 0, ${props => props.opacity || 0.5});
   box-sizing: border-box;
@@ -43,3 +14,37 @@ const Film = styled.div<{justify?: string, opacity?: number, padding?: string}>`
   flex-direction: column;
   justify-content: ${props => props.justify || 'center'};
 `;
+
+interface HeroImageProps extends HeroProps {
+  children: React.ReactNode;
+  image?: string;
+  filmOpacity?: number;
+  justify?: string;
+  padding?: string;
+}
+
+export default function HeroImage(props: HeroImageProps) {
+  const {
+    children,
+    image,
+    filmOpacity,
+    justify,
+    padding,
+    ...heroProps
+  } = props;
+
+  return (
+    <Hero {...heroProps} padding="0rem" styling={HERO_IMAGE}>
+      <Film justify={justify} opacity={filmOpacity} padding={padding}>
+        {children}
+      </Film>
+    </Hero>
+  );
+}
+
+HeroImage.defaultProps = {
+  image: null,
+  filmOpacity: null,
+  justify: null,
+  padding: null,
+};

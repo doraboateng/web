@@ -21,7 +21,7 @@ dist/
 # Miscellaneous
 tmp/
 .DS_Store
-.env
+.env.local
 Thumb.db
 npm-debug.log*
 yarn-debug.log*

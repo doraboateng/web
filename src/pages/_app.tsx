@@ -31,8 +31,8 @@ export default class BoatengApp extends App<{err: any}> {
   render = () => {
     const { Component, err, pageProps } = this.props;
     const title = 'Dora Boateng';
-    const description = 'Languages and cultures reference.';
-    const keywords = 'dictionary, encyclopedia, bilingual, multilingual, translation';
+    const description = 'Indigenous and African heritage.';
+    const keywords = 'indigenous, african, heritage, culture, language';
 
     return (
       <ThemeProvider theme={theme}>

@@ -4,70 +4,15 @@ import styled, { StyledProps } from 'styled-components';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-interface Props {
-  icon?: IconProp;
-  name: string;
-  padding?: string;
-  placeholder?: string;
+interface IconButtonProps {
   textColor?: Color;
-  type?: string;
 }
 
-const Input = (props: Props) => {
-  const inputRef = React.useRef(null);
-  const [isActive, setIsActive] = React.useState<boolean>(false);
-  const [value, setValue] = React.useState<string>('');
+const getColor = (
+  props: StyledProps<IconButtonProps | TextInputProps>,
+) => (props.textColor || props.theme.textColor).string();
 
-  const handleClearInput = () => {
-    setValue('');
-    inputRef.current.focus();
-  };
-
-  return (
-    <Wrapper isActive={isActive} padding={props.padding}>
-      {props.icon && (
-        <SubmitButton textColor={props.textColor}>
-          <FontAwesomeIcon icon={props.icon} />
-        </SubmitButton>
-      )}
-
-      <TextInput
-        name={props.name}
-        placeholder={props.placeholder}
-        ref={inputRef}
-        textColor={props.textColor}
-        type={props.type}
-        value={value}
-        onBlur={() => setIsActive(false)}
-        onChange={event => setValue(event.target.value)}
-        onFocus={() => setIsActive(true)}
-      />
-
-      {value.length > 0 && (
-        <ClearButton onClick={handleClearInput} textColor={props.textColor}>
-          <FontAwesomeIcon icon="times" />
-        </ClearButton>
-      )}
-    </Wrapper>
-  );
-};
-
-Input.defaultProps = {
-  icon: null,
-  padding: '1em',
-  placeholder: null,
-  textColor: null,
-  type: 'text',
-};
-
-export default Input;
-
-interface WrapperProps {
-  isActive: boolean;
-  padding: string;
-}
-
-const Wrapper = styled.div<WrapperProps>`
+const InputWrapper = styled.div<{ isActive: boolean, padding: string }>`
   background-color: ${props => (props.isActive
     ? props.theme.white.fade(0.4).string()
     : props.theme.white.fade(0.7).string())};
@@ -78,14 +23,6 @@ const Wrapper = styled.div<WrapperProps>`
   transition: background-color ${props => props.theme.transitionDuration};
   width: 100%;
 `;
-
-interface IconButtonProps {
-  textColor?: Color;
-}
-
-const getColor = (
-  props: StyledProps<IconButtonProps | TextInputProps>,
-): string => (props.textColor || props.theme.textColor).string();
 
 const IconButton = styled.button<IconButtonProps>`
   background-color: transparent;
@@ -127,3 +64,64 @@ const TextInput = styled.input<TextInputProps>`
     color: ${props => getColor(props)};
   }
 `;
+
+interface Props {
+  autoFocus?: boolean;
+  icon?: IconProp;
+  initialValue?: string;
+  name: string;
+  padding?: string;
+  placeholder?: string;
+  textColor?: Color;
+  type?: string;
+}
+
+export default function Input(props: Props) {
+  const inputRef = React.useRef(null);
+  const [isActive, setIsActive] = React.useState(false);
+  const [value, setValue] = React.useState(props.initialValue);
+
+  const handleClearInput = () => {
+    setValue('');
+    inputRef.current.focus();
+  };
+
+  return (
+    <InputWrapper isActive={isActive} padding={props.padding}>
+      {props.icon && (
+        <SubmitButton textColor={props.textColor}>
+          <FontAwesomeIcon icon={props.icon} />
+        </SubmitButton>
+      )}
+
+      <TextInput
+        autoFocus={props.autoFocus}
+        name={props.name}
+        placeholder={props.placeholder}
+        ref={inputRef}
+        textColor={props.textColor}
+        type={props.type}
+        value={value}
+        onBlur={() => setIsActive(false)}
+        onChange={event => setValue(event.target.value)}
+        onFocus={() => setIsActive(true)}
+      />
+
+      {value.length > 0 && (
+        <ClearButton onClick={handleClearInput} textColor={props.textColor}>
+          <FontAwesomeIcon icon="times" />
+        </ClearButton>
+      )}
+    </InputWrapper>
+  );
+}
+
+Input.defaultProps = {
+  autoFocus: false,
+  icon: null,
+  initialValue: '',
+  padding: '1em',
+  placeholder: null,
+  textColor: null,
+  type: 'text',
+};

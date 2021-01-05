@@ -2,29 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { SearchForm } from '../../search';
-import { HeroImage, Section, Tagline, theme } from '../../shared';
-
-const SearchSection = () => (
-  <HeroImage filmOpacity={0.3} height="60vh" justify="flex-start">
-    <HeroInner>
-      <Title>
-        <em>
-          A Reference of Cultures
-        </em>
-      </Title>
-
-      <Title>
-        <em>
-          Past and Present.
-        </em>
-      </Title>
-
-      <FormWrapper>
-        <SearchForm backgroundColor={theme.amber.lighten(0.7)} />
-      </FormWrapper>
-    </HeroInner>
-  </HeroImage>
-);
+import { HeroImage, HeroImageTitle, Section, theme } from '../../shared';
 
 const HeroInner = styled.div`
   display: flex;
@@ -34,12 +12,6 @@ const HeroInner = styled.div`
 
   @media(min-width: ${props => props.theme.mediaQueryExtraLarge}) {
     margin-top: 70px;
-  }
-`;
-
-const Title = styled(Tagline)`
-  em {
-    background-color: ${props => props.theme.textColor.fade(0.4).string()};
   }
 `;
 
@@ -57,4 +29,16 @@ const FormWrapper = styled(Section)`
   }
 `;
 
-export default SearchSection;
+export default function SearchSection() {
+  return (
+    <HeroImage filmOpacity={0.3} height="70vh" justify="flex-start">
+      <HeroInner>
+        <HeroImageTitle>Learn with Dora</HeroImageTitle>
+
+        <FormWrapper>
+          <SearchForm backgroundColor={theme.amber.lighten(0.7)} />
+        </FormWrapper>
+      </HeroInner>
+    </HeroImage>
+  );
+}
