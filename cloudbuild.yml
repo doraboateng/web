@@ -3,20 +3,18 @@ steps:
     args: [
       "build",
       "--build-arg", "BUILD_VERSION=$SHORT_SHA",
-      "--tag", "gcr.io/doraboateng/web:$COMMIT_SHA",
+      "--build-arg", "COMMIT_HASH=$COMMIT_SHA",
+      "--tag", "gcr.io/doraboateng/web:latest",
       "--target", "prod",
       ".",
     ]
   - name: "gcr.io/cloud-builders/docker"
-    args: [
-      "push",
-      "gcr.io/doraboateng/web:$COMMIT_SHA",
-    ]
+    args: ["push", "gcr.io/doraboateng/web:latest"]
   - name: "gcr.io/cloud-builders/gcloud"
     args: [
       "run", "deploy", "web",
       "--allow-unauthenticated",
-      "--image", "gcr.io/doraboateng/web:$COMMIT_SHA",
+      "--image", "gcr.io/doraboateng/web:latest",
       "--platform", "managed",
       "--region", "us-east1",
     ]
