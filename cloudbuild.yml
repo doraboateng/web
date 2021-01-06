@@ -2,26 +2,15 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: [
       "build",
-      "--build-arg", "BUILD_VERSION=$TAG_NAME",
+      "--build-arg", "BUILD_VERSION=$SHORT_SHA",
       "--tag", "gcr.io/doraboateng/web:$COMMIT_SHA",
       "--target", "prod",
       ".",
     ]
   - name: "gcr.io/cloud-builders/docker"
     args: [
-      "tag",
-      "gcr.io/doraboateng/web:$COMMIT_SHA",
-      "gcr.io/doraboateng/web:latest",
-    ]
-  - name: "gcr.io/cloud-builders/docker"
-    args: [
       "push",
       "gcr.io/doraboateng/web:$COMMIT_SHA",
-    ]
-  - name: "gcr.io/cloud-builders/docker"
-    args: [
-      "push",
-      "gcr.io/doraboateng/web:latest",
     ]
   - name: "gcr.io/cloud-builders/gcloud"
     args: [
