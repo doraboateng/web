@@ -1,7 +1,8 @@
-import Link from 'next/link';
 import React from 'react';
 
-import useSearch from '../useSearch';
+import ExpressionResult from './Expression';
+import LanguageResult from './Language';
+import useSearch from '../hooks/useSearch';
 
 interface Props {
   locale: string;
@@ -9,42 +10,40 @@ interface Props {
 }
 
 export default function Results({ locale, query }: Props) {
-  const { isLoading, results } = useSearch(query);
+  const { isLoading, results } = useSearch(query, locale);
 
   if (isLoading) {
     return <div>...</div>;
   }
 
-  if (!results) {
+  if (!results || !results.length) {
     return <div>Could not find any results for {query}.</div>;
   }
 
   return (
     <ul>
-      {results.map(({ resourceId, title, type }) => {
-        const linkProps = {
-          href: '/',
-          as: '/',
-        };
+      {results.map(result => {
+        switch (result.type) {
+          case 'expression':
+            return (
+              <ExpressionResult
+                {...result}
+                key={result.id}
+                locale={locale}
+              />
+            );
 
-        switch (type) {
           case 'language':
-            linkProps.href = '/[locale]/[langCode]';
-            linkProps.as = `/${locale}/${resourceId}`;
-            break;
+            return (
+              <LanguageResult
+                {...result}
+                key={result.id}
+              />
+            );
 
           default:
-            linkProps.href = '/';
-            linkProps.as = '/';
+            return null;
         }
-
-        return (
-          <li key={resourceId}>
-            <Link {...linkProps}>
-              <a href={linkProps.as}>{title}</a>
-            </Link>
-          </li>
-        );
       })}
     </ul>
   );

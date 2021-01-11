@@ -10,14 +10,16 @@ module.exports = (phase, { defaultConfig }) => {
     env: {
       DEVELOPMENT,
       PRODUCTION,
-
-      GRAPHQL_AUTH_TOKEN: process.env.GRAPHQL_AUTH_TOKEN || '',
-      GRAPHQL_GRPC_HOST: process.env.GRAPHQL_GRPC_HOST || '',
-      GRAPHQL_HTTP_HOST: process.env.GRAPHQL_HTTP_HOST || '',
       VERSION: process.env.BUILD_VERSION || 'dev',
     },
     reactStrictMode: true,
     webpack: (config, options) => {
+      // Add GraphQL loader.
+      config.module.rules.push({
+        test: /\.gql$/,
+        loader: 'webpack-graphql-loader',
+      });
+
       // Replace "@sentry/node" imports with "@sentry/browser" when building
       // the browser bundle.
       if (!options.isServer) {

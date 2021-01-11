@@ -1,0 +1,4 @@
+fragment expressionSearchFields on Expression {
+  uuid
+  type
+}

@@ -1,0 +1,124 @@
+enum ExpressionType {
+  Expression
+  Phrase
+  Proverb
+  Word
+}
+
+enum NounType {
+  Name
+  Place
+  Person
+}
+
+enum PartOfSpeech {
+  Adjective
+  Adverb # Includes connectives such as "likewise".
+  Conjunction
+  Interjection # Includes exclamations such as "oh!"
+  Noun
+  Preposition
+  Pronoun
+  Verb
+
+  Prefix
+  Suffix
+}
+
+enum ReferenceType {
+  Article
+  Audio
+  Book
+  Encyclopedia
+  Film
+  Interview
+  Paper
+  Person
+  Report
+  SocialMedia
+  Song
+  Video
+  Website
+  Other
+}
+
+enum StoryType {
+  Poem
+  Song
+  Story
+}
+
+type Alphabet {
+  code: String! @id
+  names: [Transliteration!]!
+  script: Script
+  characters: String
+  # languages: [Language]
+  references: [Reference]
+}
+
+type Culture {
+  endonym: String! # Name as defined by the people of the culture.
+  exonyms: [Transliteration!]! # Names used by foreigners.
+}
+
+type Expression {
+  uuid: String! @id # RFC 4122 UUID as a 32-character hexadecimal string.
+  type: ExpressionType!
+  titles: [Transliteration!]!
+  languages: [Language!]!
+  partOfSpeech: PartOfSpeech
+  nounType: NounType
+  lexeme: Expression # When the lexeme references itself, we have a lemma.
+  literalTranslations: [Transliteration!]!
+  practicalTranslations: [Transliteration!]!
+  meanings: [Transliteration!]!
+  tags: [Tag]
+  relatedExpressions: [Expression] # Synonyms, antonyms, compound words maybe.
+  references: [Reference]
+}
+
+type Language {
+  code: String! @id
+  names: [Transliteration!]!
+  parent: Language
+  lexifier: Language # Basis language for a pidgin or creole.
+  relatedLanguages: [Language]
+  glottologId: String
+  alphabets: [Alphabet]
+  isFamily: Boolean
+  references: [Reference]
+}
+
+type Reference {
+  type: ReferenceType!
+  mla: String
+}
+
+type Script {
+  code: String! @id
+  names: [Transliteration]
+}
+
+type Story {
+  type: StoryType!
+  lines: [StoryLine]! @hasInverse(field: story)
+  language: Language
+  script: Script
+}
+
+type StoryLine {
+  story: Story!
+  content: String!
+}
+
+type Tag {
+  name: String!
+}
+
+type Transliteration {
+  hash: String! @id
+  value: String! @search(by: [fulltext])
+  langCode: String
+  scriptCode: String
+}

@@ -1,0 +1,8 @@
+overwrite: true
+schema: https://dora-boateng-graph.us-west-2.aws.cloud.dgraph.io/graphql
+documents: "src/**/*.gql"
+generates:
+  src/shared/graph/types.generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations

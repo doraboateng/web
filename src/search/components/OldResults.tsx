@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
-import { useSearch } from '../../utils/network';
+import { useSearch } from '../../shared/network';
 
 interface Props {
   query: string;

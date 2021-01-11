@@ -14,6 +14,7 @@ tmp/
 .editorconfig
 .env.*
 .gitignore
+.schema-codegen.yml
 .travis.yml
 docker-compose*
 Dockerfile

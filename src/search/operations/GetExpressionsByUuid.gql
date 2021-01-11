@@ -1,0 +1,8 @@
+query GetExpressionsByUuid($uuids: [String!]!) {
+  queryExpression(filter: { uuid: { in: $uuids } }) {
+    uuid
+    titles { value }
+    languages { code names { value } }
+    practicalTranslations { value }
+  }
+}

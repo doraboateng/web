@@ -13,6 +13,7 @@ _Looking to contribute to our source code? Read our [contribution notes here](do
 ## Table of contents
 
 - [Setting up your local environment](#setting-up-your-local-environment)
+- [Update GraphQL schema and typings](#update-graphql-schema-and-typings)
 - [Reporting Bugs](#reporting-bugs)
 - [Reporting Security Issues](#reporting-security-issues)
 - [Contributing](docs/contributing.md)
@@ -52,6 +53,12 @@ yarn dev
 ```
 
 The app will be available at the URL: http://localhost:3000.
+
+## Update GraphQL schema and typings
+
+```shell
+yarn update-schema-types
+```
 
 ## Reporting bugs
 

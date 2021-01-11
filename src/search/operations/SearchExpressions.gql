@@ -1,0 +1,28 @@
+query SearchExpressions ($query: String!) {
+  byTitle: queryExpression @cascade(fields: ["titles"]) {
+    uuid
+
+    # TODO: filter by language too (e.g. "eng").
+    matches: titles (filter: { value: { alloftext: $query } }) {
+      value
+    }
+  }
+  byLiteral: queryExpression @cascade(fields: ["literalTranslations"]) {
+    uuid
+    matches: literalTranslations (filter: { value: { alloftext: $query } }) {
+      value
+    }
+  }
+  byPractical: queryExpression @cascade(fields: ["practicalTranslations"]) {
+    uuid
+    matches: practicalTranslations (filter: { value: { alloftext: $query } }) {
+      value
+    }
+  }
+  byMeaning: queryExpression @cascade(fields: ["meanings"]) {
+    uuid
+    matches: meanings (filter: { value: { alloftext: $query } }) {
+      value
+    }
+  }
+}

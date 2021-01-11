@@ -26,10 +26,6 @@ export const getLocale = (request: IncomingMessage): Locale => LOCALE_ENGLISH;
 
 export const getLocalizedUrl = (request: IncomingMessage): string => {
   const [path, queryString] = (request.url || '').split('?');
-
-  console.log('path', path);
-  console.log('q', queryString);
-
   const paths = path
     .split('/')
     .map(p => decodeURIComponent(p).trim())
